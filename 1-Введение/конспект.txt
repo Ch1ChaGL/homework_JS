@@ -1,0 +1,77 @@
+//////////////////Начало/////////////////////////
+let  имя_переменной = литерал числа; - это statement
+let amount = 0;
+/////////////////////////////////////////////////
+Присвоение
+amount = 100; Можно менять и тип, но лучше не стоит
+amount+=price Тоже самое что и 
+                    amount=amount+price
+//////////////////////////////////////////////
+
+Глобальные константы
+const MAX_PURCHASE = 2000;
+        \
+        UPPER SNAKE CASE
+Локальные константы
+const total = 1500;
+        \
+        lowerCamelCase
+/////////////////////////////////
+
+Несколько переменных писать не хороший тон
+let year = 622,
+    migration = 'Hijrah', i,    //Так писать не нужно
+    counter = 0;
+////////////////////
+Лучше писать Так
+let year = 622;
+let migration = 'Hijrah'; 
+let i;
+let counter = 0;
+/////////////////////
+Отсюда можно выделить константы
+const year = 622;
+const migration ='Hijrah';
+let i;
+let counter=0;
+//////////////////////////
+
+
+Промежуточные индентификаторы(переменные)
+const goods = order[groupName];
+const amount = calculateSubtotal(goods);
+expenses.set(groupName, amount);
+
+
+
+
+
+
+
+
+
+
+
+Система типов
+ 
+ Примитивные типы
+ Number - число
+ {
+ NaN - Not a Number
+ Infinity - Бесконечность
+ }
+ Bigint - Длинное целое число
+ String - Строка
+ Boolean - Правда или Ложь
+ Symbol - Позже
+
+
+ Undefined - не записанное значение для чисел
+ null -  не записанное значение для объектов
+
+ Object - объекты
+ Array
+ Set
+ Map
+
+
