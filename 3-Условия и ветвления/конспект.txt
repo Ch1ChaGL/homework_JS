@@ -1,0 +1,78 @@
+ const calculateSubtotal  = (goods) =>{
+    let amount = 0;
+    for(const item of goods){
+        if(item.price<0)throw 'negative price'; //Так лучше не писать потому что, бросая исключение
+        else amount+=item.price;                  мы и так выйдем из if  
+    }
+    return amount;
+};
+
+
+
+Лучше использовать прием return early
+
+if (item.price <0) throw 'Negative price';
+amount+=item.price;                             
+/////ИЛИ////////
+/////ИЛИ////////
+/////ИЛИ////////
+if (item.price <0){
+    throw 'Negative price';
+}
+amount+=item.price;
+
+
+Так писать бесмысленно
+if (item.price > 0) return false;
+return true;
+
+Лучше написать вот так
+return item.price >0;
+
+
+Ecли внути if и внути else есть что-то одинаковое, то лучше вынести из ветвления
+, в ветвлении должно быть только то что есть в одном экземпляре
+
+
+/////так писать тоже не стоит////
+if (order[groupName] && order[groupName].lenght>0){
+    total+=calculateSubtotal(order[groupName]);
+    count+= order[groupName].lenght;
+}
+
+Лучше дать имя значению
+
+const goods = order[groupName];
+if(goods && goods.lenght>0){
+    total+=calculateSubtotal(goods);
+    count+=goods.lenght;
+}
+
+Еще более правильная запись 
+
+const goods=order[groupName];
+if(goods){
+    const len = goods.lenght;
+    if(len>0){
+        total+=calculateSubtotal(goods);
+        count+=len;
+    }
+}
+
+можно сделать еще более читабельный код,и избавиться от вложенности
+
+const goods=order[groupName];
+if(!goods) return;
+const len = goods.lenght;
+if(len>0){
+total+=calculateSubtotal(goods);
+count+=len;
+}
+
+
+Тернарный оператор
+
+amount+=item.price < 0 ? 0 : item.price;
+
+условие ? выражение1 : выражение2 
+Оператор возвращает значение выражения1, если условие верно, и значение выражения2 в противном случае
