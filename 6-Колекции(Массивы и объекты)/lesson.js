@@ -43,9 +43,9 @@ console.log({price});
 
 
 const names =['laptop','keyboard','mouse'];
-console.log(names.join('; '));
-const index = names.indexOf('mouse');
+console.log(names.join('; '));                      //Метод Join
+const index = names.indexOf('mouse');               // Индекс элемента в массиве
 console.log({index});
 
-const test = purchase.Electonics.filter((item)=>item.price>50);
+const test = purchase.Electonics.filter((item)=>item.price>50);     //Фильтр больше 50
 console.log({test});
