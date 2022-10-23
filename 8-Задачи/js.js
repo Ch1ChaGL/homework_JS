@@ -52,6 +52,7 @@ console.log(calculateTotal(goods));
 const purchase = {
     Electronics: [
       { name: 'Laptop', price: 1500 },
+      { name: 'Laptop', price: 1000 },
       { name: 'Keyboard', price: 100 },
     ],
     Textile: [{ name: 'Bag', price: 50 }],
@@ -65,6 +66,7 @@ const DNS = {
     ],
     Garden:[
         {name:"Chair",price:150},
+        { name: 'Laptop', price: 500 },
         {name:"table", price:250},
     ],
 };
@@ -73,9 +75,44 @@ purchase.Electronics.push({name: "mouse",price:50});
 purchase.Electronics.push({name: "mouse1",price:50});
 const item = purchase.Electronics.pop();
 console.log(item);
-const store = Object.assign({},purchase,DNS);
+// const store = Object.assign({},purchase,DNS);
+const store = {...purchase,...DNS};
 console.log(store);
 
 console.log(...purchase.Electronics,...DNS.Garden);
 
 
+/*Задача 4. Напишите функцию find, которая будет проходить по структуре из предыдущей задачи и находить товар по его имени (проверяя все группы товаров). Имена могут повторяться, 
+но на этот раз нас интересует только первый товар, у которого имя совпало. */
+
+const find = (basket,name)=>{
+  for(const key of Object.keys(basket)){
+    const items = basket[key];
+    for(const item of items){
+        if(item.name === name){
+            return item;
+        }
+    }
+  } 
+};
+
+const result = find(purchase,'Laptop');
+console.log(result);
+
+/*Задача 5. Теперь расширим предыдущую задачу: нужно так изменить функцию find, чтобы она возвращала массив, 
+содержащий все товары с указанным именем. Если ни одного не нашли, то пустой массив. */
+
+const findFull = (basket,name)=>{
+    const result = [];
+    for(const key of Object.keys(basket)){
+      const items = basket[key];
+      for(const item of items){
+          if(item.name === name){
+              result.push({item});
+          }
+      }
+    } 
+    return result;
+  };
+  const answer = findFull(store,'Laptop');
+  console.log(answer);
