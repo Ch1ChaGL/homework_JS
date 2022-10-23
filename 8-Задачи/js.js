@@ -30,12 +30,11 @@ let total = 0;
 for(const item of goods){
     if(typeof(item.price)=='number' && item.price>0){
         total+=item.price;
-    }
-     throw "Число не то";
+    }else{
+     throw "Число не то";}
 }
 return total;
 };
-
 
 console.log(calculateTotal(goods));
 
@@ -45,3 +44,38 @@ console.log(calculateTotal(goods));
 //     { name: 'HDMI', price: 150},
 //     { name: 'Telephone', price: 1200},
 // ];
+
+
+
+//Задача 3. Возьмите эту структуру данных и дополните ее товарами и 
+//группами товаров по примеру тех, которые уже есть:
+const purchase = {
+    Electronics: [
+      { name: 'Laptop', price: 1500 },
+      { name: 'Keyboard', price: 100 },
+    ],
+    Textile: [{ name: 'Bag', price: 50 }],
+  };
+
+const DNS = {
+    Household:[
+        {name: "Multicooker", price: 1000},
+        {name: "Kettle", price:250},
+        {name: "Frying pan" ,price:300},
+    ],
+    Garden:[
+        {name:"Chair",price:150},
+        {name:"table", price:250},
+    ],
+};
+DNS.Garden.push({name:"dwarf", price:100})
+purchase.Electronics.push({name: "mouse",price:50});
+purchase.Electronics.push({name: "mouse1",price:50});
+const item = purchase.Electronics.pop();
+console.log(item);
+const store = Object.assign({},purchase,DNS);
+console.log(store);
+
+console.log(...purchase.Electronics,...DNS.Garden);
+
+
