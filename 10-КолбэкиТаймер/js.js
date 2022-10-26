@@ -1,3 +1,6 @@
+
+
+
 // const add = (a,b) => a+b;
 // const res = add(2,3);
 // console.log(res);
@@ -5,18 +8,18 @@
 
 // const add = (a,b,callback)=>callback(a+b);
 
-// const res = add(2,3, (res)=>{
+// const res = add(2,3, (res)=>{ //Меняется контракт возврата значения из функции
 // console.log(res);
 // });
 
-const add = (a,b,callback) =>{
-    if(!Number.isFinite(a)|| !Number.isFinite(b)){
-        callback(new Error('Invalid arguments'));
-        return;
-    }
-    callback(0,a+b);
-};
-// callback last error first
+// const add = (a,b,callback) =>{
+//     if(!Number.isFinite(a)|| !Number.isFinite(b)){
+//         callback(new Error('Invalid arguments'));
+//         return;
+//     }
+//     callback(0,a+b);
+// };
+//контракт callback last error first
 
 
 /*КОроче спустя полтора часа наверное, я осознал что происходит, вопервых колбэк 
@@ -79,8 +82,54 @@ const add = (a,b,callback) =>{
 // });
 
 
-const arguments = -1;
+// const arguments = -1;
 
-if(arguments){
-    console.log("hellow");
-}
+// if(arguments){
+//     console.log("hellow");
+// }
+
+
+// Таймеры
+// колбэкфункция первая количество секунд второе
+// Количество милисекунд на самом деле не является точным,
+//Минимум через заданное время но может и позже
+// setTimeout(()=>{
+//     console.log('callback #1');
+// },20);
+// setTimeout(()=>{
+//     console.log('callback #2');
+// },10);
+// setTimeout(()=>{
+//     console.log('callback #3');
+// },15);
+
+
+// setInterval(()=>{
+//     console.log('callback #1');
+// },20);
+// setInterval(()=>{
+//     console.log('callback #2');
+// },10);
+// setInterval(()=>{
+//     console.log('callback #3');
+// },15);
+
+
+// const timer = setInterval(()=>{
+//     console.log('callback #1');
+// },10);
+
+// setTimeout(()=>{
+//     console.log('callback #2');
+//     clearInterval(timer);
+// },50);
+
+
+const timer = setTimeout(() => {
+    console.log('callback #1');
+}, 50);
+
+setTimeout(()=>{
+    console.log('callback #2');
+    clearTimeout(timer);
+},10);
