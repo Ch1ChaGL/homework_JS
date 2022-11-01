@@ -116,3 +116,15 @@ const findFull = (basket,name)=>{
   };
   const answer = findFull(store,'Laptop');
   console.log(answer);
+
+
+  function removeChar(str) {
+    return str.slice(1, -1);
+  }
+
+  console.log(removeChar('Privet'));
+
+  function addBinary(a,b){
+    return (a+b).toString(2)
+  }
+  console.log(addBinary(5,9));

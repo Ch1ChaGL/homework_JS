@@ -125,11 +125,31 @@
 // },50);
 
 
-const timer = setTimeout(() => {
-    console.log('callback #1');
-}, 50);
+// const timer = setTimeout(() => {
+//     console.log('callback #1');
+// }, 50);
 
-setTimeout(()=>{
-    console.log('callback #2');
-    clearTimeout(timer);
-},10);
+// setTimeout(()=>{
+//     console.log('callback #2');
+//     clearTimeout(timer);
+// },10);
+
+
+const INTERVAL = 500;
+let counter = 0;
+const MAX_VALUE = 10;
+let timer = null;
+
+const test = () => {
+    if(counter === MAX_VALUE){
+        console.log('The end');
+        clearInterval(timer);
+        return;
+    }
+    console.dir({counter, date: new Date()});
+    counter++;
+};
+
+console.log('Begin');
+timer = setInterval(test,INTERVAL);
+console.log(timer);
