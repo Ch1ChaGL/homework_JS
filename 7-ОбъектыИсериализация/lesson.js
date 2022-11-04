@@ -190,3 +190,80 @@ const multiplyNumeric = obj => {
 multiplyNumeric(menu);
 console.log(menu);
 
+
+
+const username = {
+  name: 'John',
+  age: 30,
+  sayHi(name) {
+    // "this" - это "текущий объект".
+    console.log(this.name + name);
+  }
+};
+
+// username.SayHi = () => {
+//   console.log('Привет');
+// };
+
+// username.SayHi();
+
+username.sayHi('test');
+
+
+// function makeUser() {
+//   return {
+//     name: "John",
+//     ref: this
+//   };
+// }
+
+// let user = makeUser();
+
+// alert( user.ref.name ); // Каким будет результат?
+
+
+const calculator = {
+  read(a, b) {
+    /* Тут мы как бы создаем поля у
+    объекта и туда передаем значение*/
+    this.a = a;
+    this.b = b;
+  },
+  sum() {
+    return this.a + this.b;
+  },
+  mul() {
+    return this.a * this.b;
+  },
+};
+
+calculator.read(2, 3);
+console.log(calculator.sum());
+console.log(calculator.mul());
+
+calculator.read(4, 5);
+console.log(calculator.sum());
+console.log(calculator.mul());
+
+
+const ladder = {
+  step: 0,
+  up() {
+    this.step++;
+    return this;
+  },
+  down() {
+    this.step--;
+    return this;
+  },
+  showStep() { // показывает текущую ступеньку
+    console.log(this.step);
+    return this;
+  }
+};
+
+ladder.up().up().down().showStep().down().showStep();
+//Так как при вызове функции без return this мы бы прсто вызвали функцию,
+//в которой нет ссылки на наш оюъект и мы бы не
+// смоглм бы вызвать у нее же метод,
+//Но так как мы возвращаем объект, то у него мы можем вызвать его же метод.
