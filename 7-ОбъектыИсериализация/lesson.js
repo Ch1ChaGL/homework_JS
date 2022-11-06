@@ -267,3 +267,105 @@ ladder.up().up().down().showStep().down().showStep();
 //в которой нет ссылки на наш оюъект и мы бы не
 // смоглм бы вызвать у нее же метод,
 //Но так как мы возвращаем объект, то у него мы можем вызвать его же метод.
+
+function User(name) {
+  this.name = name;
+  this.isAdmin = false;
+}
+const user3 = new User('Jhon');
+console.log(user3);
+
+
+function BigUser() {
+
+  this.name = 'John';
+
+  return { name: 'Godzilla' };  // <-- возвращает этот объект
+}
+
+console.log(new BigUser().name);
+
+
+function UserName(name) {
+  this.name = name;
+
+  this.sayHi = function() {
+    console.log('Меня зовут: ' + this.name);
+  };
+}
+
+
+const jhon = new UserName('Jhon');
+jhon.sayHi();
+
+
+function Calculator() {
+  this.read = function(a, b) {
+    this.a = a;
+    this.b = b;
+  };
+  this.sum = function() {
+    return this.a + this.b;
+  };
+  this.mul = function() {
+    return this.a * this.b;
+  };
+
+}
+
+
+const calc1 = new Calculator();
+
+calc1.read(2, 3);
+console.log(calc1.sum());
+console.log(calc1.mul());
+
+function Accumulator(startingValue) {
+  this.value = startingValue;
+  this.read = function(a) {
+
+    this.value += a;
+    return this.value;
+  };
+  this.valuesub = function() {
+    return this.value;
+  };
+}
+
+
+const accumulator = new Accumulator(1);
+
+console.log(accumulator.read(2));
+console.log(accumulator.read(3));
+console.log(accumulator.value);
+
+
+
+const usertest = {}; // пользователь без свойства "address"
+
+//console.log(usertest.address.street); // Ошибка!
+console.log(usertest.addres?.street);
+
+function UserAdmin() {
+  this.admin = function() {
+    console.log('Я админ');
+  };
+}
+
+const Admin = new UserAdmin();
+const Guest = new Object();
+Admin.admin?.();
+console.log(Guest.admin?.());
+
+
+
+const key = 'firstName';
+
+const user1 = {
+  firstName: 'John'
+};
+
+const user2 = null;
+
+console.log(user1?.[key]); // John
+console.log(user2?.[key]); // undefined
