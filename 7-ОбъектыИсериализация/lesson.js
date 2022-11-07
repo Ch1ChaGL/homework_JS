@@ -369,3 +369,49 @@ const user2 = null;
 
 console.log(user1?.[key]); // John
 console.log(user2?.[key]); // undefined
+
+
+//Преобразование объектов в примитивы
+
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this[Symbol.toPrimitive] = hint => {
+    //hint : "string","nubmer","default"
+    if ('string' === hint) {
+      return this.name;
+    }
+    //if ('number' === hint) {
+    return this.age;
+    // }
+    //return -1;
+  };
+}
+
+
+
+const dave  = new Person('Dave', 30);
+const mike =  new Person('Mike', 45);
+
+console.log(
+  String(dave)
+);
+console.log(
+  Number(dave)
+);
+
+console.log(mike - dave);
+console.log(mike + dave);
+//Какая то задачка на логику на собеседование
+// const dwayne = {};
+// const daniel = {
+//   firstName: 'Daniel'
+// };
+// const jason = {
+//   key: 'jason'
+// };
+
+// dwayne['daniel'] = 123;
+// dwayne['jason'] = 456;
+
+// console.log(dwayne['daniel']);
