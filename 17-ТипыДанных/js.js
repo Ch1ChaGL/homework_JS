@@ -138,3 +138,40 @@ console.log(0xff); // 255, без 0x тоже работает
 console.log(parseInt('2n9c', 36)); // 123456, кроме этого, на это не ругается
 
 //123
+
+
+
+
+
+
+
+
+//Массивы
+let arr = new Array();
+//let arr = [];
+
+arr = ['Привет', 'как дела',];
+console.log(arr);
+
+
+const arr2 = [ 'Яблоко', { name: 'Джон' }, true,
+  function() { console.log('привет'); } ];
+
+console.log(arr2[1].name);
+arr2[3]();
+
+
+const fruits = ['Apple', 'Orange', 'Plum'];
+
+console.log(fruits.at(-1));
+
+fruits.push('Ананас');
+fruits.shift();
+console.log(fruits);
+
+fruits.push('Парнас');
+console.log(fruits);
+fruits.pop();
+console.log(fruits);
+fruits.unshift('1Элемент');
+console.log(fruits);
