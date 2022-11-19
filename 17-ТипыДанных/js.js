@@ -175,3 +175,4 @@ fruits.pop();
 console.log(fruits);
 fruits.unshift('1Элемент');
 console.log(fruits);
+
