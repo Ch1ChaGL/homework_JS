@@ -71,3 +71,6 @@ console.log(test.add2(1));
 console.log(test.add2(1));
 console.dir(test.steps);
 console.log(test);
+
+
+
