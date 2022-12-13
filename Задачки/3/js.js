@@ -48,3 +48,32 @@
   };
   console.log(IpV4());
 }
+/*Write an algorithm that will identify
+valid IPv4 addresses in dot-decimal format.
+IPs should be considered valid if they consist of four octets,
+with values between 0 and 255, inclusive. */
+{
+  const isValidIP = str => {
+    let count = 0;
+
+    let array = str.split('.');
+    const size = array.length;
+    const array2 = str.split('.').map(item => +item);
+    for (let i = 0; i < size; i++) {
+      count++;
+      if (!(array[i].length === String(array2[i]).length)) return false;
+    }
+
+    let flag = true;
+
+    if (!(count === 4)) return false;
+    array = str.split('.').map(item => +item);
+    array.forEach(element => {
+      if (!(element <= 255 && element >= 0)) {
+        flag =  false;
+      }
+    });
+    return flag;
+  };
+  console.log(isValidIP('0.0.0.0'));
+}
