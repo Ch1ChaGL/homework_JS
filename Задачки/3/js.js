@@ -77,3 +77,44 @@ with values between 0 and 255, inclusive. */
   };
   console.log(isValidIP('0.0.0.0'));
 }
+//Вот это решение как я понял усовершенствованное верхнее, но я думал, что redus
+//Нужен для того, чтобы просто перебрать быстро массив и сложить
+//Тут же каждый раз сдвигался элемент и складывался с следующим,
+//По сути логика совсем другая,потому меня это сбило столку.
+//А по сути, наверное не важно что складывать, если мы будем
+//Самую первую сумму сдвигать в сумме 3 раза
+//со второго элемента мы два раза сдвинем
+//И на последнем 1 раз сдвинем, сложновато для понимания конечно такое решение
+{
+  const ipToInt = (ip = '127.1.1.1') => {
+    const fn = (res, item) => (res << 8) + parseInt(item);
+    return ip.split('.').reduce(fn, 0);
+  };
+  console.log(ipToInt());
+}
+
+//Задание 4
+{
+  const obj = {
+    m1: x => [x],
+    m2(x, y) {
+      return [x, y];
+    },
+    m3(x, y, z) {
+      return [x, y, z];
+    }
+  };
+  const iface = obj => {
+    const arr = [];
+    for (const key in obj) {
+      const fn = obj[key];
+      if (typeof fn === 'function') {
+        arr.push([key, fn.length]);
+      }
+    }
+    return arr;
+  };
+
+  console.log(iface(obj));
+
+}
