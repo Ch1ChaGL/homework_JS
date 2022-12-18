@@ -105,3 +105,141 @@ console.dir(arr);
     .reduce((acc, val) => acc + val);
   console.log(res1);
 }
+
+
+{
+  const matrix = [
+    [7, 10, 1, 5, 2],
+    [6, -1, 7, 2, 3],
+    [1, 2, 4, -8, 2],
+    [-6, 4, 8, 2, 0],
+  ];
+  const max = (a, b) => ((a > b) ? a : b);
+  const res = matrix.map(row => row.reduce(max))
+    .reduce((acc, rowMax) => acc + rowMax);
+
+  console.log(res);
+
+  for (const i of matrix) {
+    const row = i;
+    for (const j of row) {
+      const col = j;
+      console.log(col);
+    }
+  }
+
+  for (const i in matrix) {
+    const row = matrix[i];
+    for (const j in row) {
+      const col = row[j];
+      console.log(col);
+    }
+  }
+  matrix.forEach((element, i) => element
+    .forEach((element, j) => console.log(i, j, element)));
+  let count = 0;
+  const arr = [7, 10, 1, 5, 2];
+  /*В лямбда выражениях возвращается,
+  только то что происходит после последней запятой,
+  все остальное либо исполняется, либо отбрасывается */
+  const sum  = (acc, val) => (count++, acc + val);
+  const res1  = arr.reduce(sum);
+  console.log({ res1, count });
+}
+
+
+
+{
+  const p1 = {
+    x: 10,
+    y: 20,
+    move(x, y) {
+      this.x += x;
+      this.y += y;
+    },
+    toString() {
+      return `[${this.x},${this.y}]`;
+    }
+  };
+  p1.move(10, 10);
+  console.log(p1.toString());
+  console.log(p1 + ''); //Вызовется метод toString();
+}
+function Point(x, y) { //Прототип, функция-конструктор
+  this.x = x;
+  this.y = y;
+}
+Object.prototype.hi = function() {
+  console.log('hi');
+};
+
+{
+  const p4 = {
+    x: 10,
+    y: 20,
+  };
+  const p1 = new Point(20, 20);
+  const p2 = new Point(30, 20);
+  console.log(p1);
+  console.log(p2);
+
+
+  //Метод для Point
+  /*Принимает объект, диструктурирующим присвоением забирает x и y
+  Затем создает новый объект с полями */
+  Point.from = function(obj) {
+    const { x, y } = obj;
+    return new Point(x, y);
+  };
+
+
+  /*Для каждого объекта прототипа Point, будет содержаться метод move */
+  Point.prototype.move = function(x, y) {
+    this.x += x;
+    this.y += y;
+  };
+
+
+  Point.prototype.toString = function() {
+    return `[${this.x},${this.y}]`;
+  };
+
+
+
+  const p3 = Point.from(p4);
+  p3.move(10, 20);
+  console.log(p3);
+
+  console.log('Function prototype:', (function() {}.prototype));
+  console.log('lambda prototype:', (() => {}).prototype);
+
+  console.log('Point prototype:', Point.prototype);
+  console.log('move prototype:', Point.prototype.move.prototype);
+}
+Point.prototype.move.prototype.privet = function() {
+  console.log('Privet');
+};
+
+
+//Прототипы
+{
+  const person = new Object({
+    name: 'Maxim',
+    age: 25,
+    greet() {
+      console.log('Greet');
+    }
+  });
+  console.dir(person);
+  Object.prototype.sayHello = function() {
+    console.log('Hello');
+  };
+  const lena = Object.create(person);
+  person.sayHello();
+  const str = 'I am string';
+  str.sayHello();
+  lena.name = 'Elena';
+  console.log({ 'Lena name': lena.name,
+    'Lena proto name': lena.__proto__.name });
+
+}
