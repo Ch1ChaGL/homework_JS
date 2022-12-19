@@ -243,3 +243,4 @@ Point.prototype.move.prototype.privet = function() {
     'Lena proto name': lena.__proto__.name });
 
 }
+
