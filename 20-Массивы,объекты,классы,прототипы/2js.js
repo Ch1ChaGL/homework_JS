@@ -18,7 +18,6 @@ class Point {
   }
 }
 
-
 //У всех объектов класса Point будут метод move, у которого есть функция Hellow
 Point.prototype.move.Hellow = function() {
   console.log('Hello');
@@ -33,6 +32,13 @@ console.log('prototype constructor prototype:',
 
 const p1 = new Point(20, 30);
 
+const b = Point.from(p1);
+console.log(b);
+console.log(p1);
+console.log(b);
+console.log(p1);
+console.log(b);
+console.log(b === p1);
 
 p1.move.Hellow();
 
@@ -72,3 +78,11 @@ function toString() {
   console.log(p1toString());
 }
 
+
+console.log(Point.constructor.prototype === Function.prototype);
+/*Так как сам по себе Point это конструктор, переходим по полю конструктор
+по итогу конструктор конструктора является прототипом функции */
+
+
+console.log(Point.constructor.prototype.__proto__ === Object.prototype);
+/*А то от чего унаследовал прототип функции является прототип объекта */

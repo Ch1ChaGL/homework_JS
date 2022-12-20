@@ -25,3 +25,11 @@ Object.setPrototypeOf(Square.prototype, Rect.prototype);
 const p1 = new Square(10, 20, 50);
 //const p2 = new Rect(10, 30, 40, 50);
 console.log(p1.toString());
+
+console.log(Square.prototype.__proto__ === Rect.prototype);
+
+Rect.prototype.sayHello = function() {
+  console.log('Hello, is a function on Rect prototype');
+};
+
+p1.sayHello();
