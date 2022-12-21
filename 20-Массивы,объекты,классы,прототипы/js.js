@@ -172,13 +172,13 @@ function Point(x, y) { //Прототип, функция-конструктор
 Object.prototype.hi = function() {
   console.log('hi');
 };
-
+const p1 = new Point(20, 20);
 {
   const p4 = {
     x: 10,
     y: 20,
   };
-  const p1 = new Point(20, 20);
+
   const p2 = new Point(30, 20);
   console.log(p1);
   console.log(p2);
@@ -243,4 +243,13 @@ Point.prototype.move.prototype.privet = function() {
     'Lena proto name': lena.__proto__.name });
 
 }
+
+console.log(Point.prototype.constructor.prototype === Point.prototype);
+console.log(Point.prototype.constructor.prototype === Point.prototype);
+console.log(Point.prototype.constructor.prototype === Point.prototype);
+console.log(Point.prototype.constructor.prototype === Point.prototype);
+console.log(Point.prototype.constructor.prototype === Point.prototype);
+
+
+p1.hellow();
 
