@@ -107,3 +107,75 @@
 //   dirReduc(['NORTH', 'SOUTH', 'SOUTH', 'EAST', 'WEST', 'NORTH', 'NORTH'])
 // );
 
+
+// const lastDigit = (a, b) => +Math.pow(a, b).toString().slice(-1);
+// const lastDigit = function(str1, str2) {
+//   let a = +str1;
+//   let b = +str2;
+//   if (isNaN(a)) a = 0;
+//   if (isNaN(b)) b = 0;
+//   let answer = (a ** b);
+//   answer += '';
+//   answer = answer.substring(answer.length - 1);
+//   return +answer;
+// };
+// console.log(lastDigit('b', '1'));
+
+const allRoman  = {
+  '+1000': 'M',
+  '+900': 'CM',
+  '+500': 'D',
+  '+400': 'CD',
+  '+100': 'C',
+  '+90': 'XC',
+  '+50': 'L',
+  '+40': 'XL',
+  '+10': 'X',
+  '+9': 'IX',
+  '+5': 'V',
+  '+4': 'IV',
+  '+1': 'I',
+};
+const allArab  = {
+  'M': '1000',
+  'CM': '900',
+  'D': '500',
+  'CD': '400',
+  'C': '100',
+  'XC': '90',
+  'L': '50',
+  'XL': '40',
+  'X': '10',
+  'IX': '9',
+  'V': '5',
+  'IV': '4',
+  'I': '1',
+};
+const RomanNumerals  = {
+  toRoman(num) {
+    let roman = '';
+    while (num > 0) {
+      for (const key in allRoman) {
+        while (num >= key) {
+          roman += allRoman[key];
+          num -= +key;
+        }
+      }
+    }
+    return roman;
+  },
+  fromRoman(str) {
+    let arab = 0;
+    for (const key in allArab) {
+      while (str.startsWith(key)) {
+        arab += +allArab[key];
+        str = str.replace(key, '');
+      }
+    }
+    return arab;
+  }
+};
+
+
+
+console.log(RomanNumerals.fromRoman('IV'));
