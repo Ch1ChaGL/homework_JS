@@ -39,3 +39,52 @@ Roman Numerals Helper
 Create a RomanNumerals class that can convert a roman numeral to and from an integer value. It should follow the API demonstrated in the examples below. Multiple roman numeral values will be tested for each helper method.
 
 Modern Roman numerals are written by expressing each digit separately starting with the left most digit and skipping any digit with a value of zero. In Roman numerals 1990 is rendered: 1000=M, 900=CM, 90=XC; resulting in MCMXC. 2008 is written as 2000=MM, 8=VIII; or MMVIII. 1666 uses each Roman symbol in descending order: MDCLXVI.
+
+
+5)
+
+5 kyu
+Calculating with Functions
+
+6)
+4 kuy
+Sum Strings as Numbers
+
+Given the string representations of two integers, return the string representation of the sum of those integers.
+
+For example:
+
+sumStrings('1','2') // => '3'
+
+
+7)
+
+4 kuy
+
+Range Extraction
+
+
+A format for expressing an ordered list of integers is to use a comma separated list of either
+
+individual integers
+or a range of integers denoted by the starting integer separated from the end integer in the range by a dash, '-'. The range includes all integers in the interval including both endpoints. It is not considered a range unless it spans at least 3 numbers. For example "12,13,15-17"
+Complete the solution so that it takes a list of integers in increasing order and returns a correctly formatted string in the range format.
+
+Example:
+
+solution([-10, -9, -8, -6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]);
+// returns "-10--8,-6,-3-1,3-5,7-11,14,15,17-20"
+Courtesy of rosettacode.org
+
+
+8)
+5 kyu
+Human Readable Time
+Write a function, which takes a non-negative integer (seconds) as input and returns the time in a human-readable format (HH:MM:SS)
+
+HH = hours, padded to 2 digits, range: 00 - 99
+MM = minutes, padded to 2 digits, range: 00 - 59
+SS = seconds, padded to 2 digits, range: 00 - 59
+The maximum time never exceeds 359999 (99:59:59)
+
+You can find some examples in the test fixtures.
