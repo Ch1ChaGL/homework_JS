@@ -135,7 +135,60 @@ console.log(square(3));
 console.log(cube(3));
 
 
-const Machine = () => {
+
+/*Создается функция которая определяет тип кофе,
+а точнее объем, и возвращает функцию, которая ожидает на вход крепкость,
+после чего мы просто передаем туда крепкость и нам выводит, по сути да,
+функция defineCoffeeType является похожей на конструктор,
+но все равно задание немного странное
+*/
+const coffee = (volume, strength) =>
+  `Coffee volume: ${volume}ml, strength: ${strength}`;
+
+const defineCoffeeType = volume => strength => coffee(volume, strength);
 
 
+const espresso = defineCoffeeType(50);
+const americano = defineCoffeeType(150);
+
+console.log(espresso('strong'));
+console.log(americano('medium'));
+
+
+const tagged = (pref, str) => `[${pref}] ${str}`;
+
+
+const tagDate = str => tagged(new Date(), str);
+
+console.log(tagDate('Danil'));
+
+
+
+
+//Функциональное наследование
+
+function Machine() {
+  let enabled = false;
+  this.enable = function() {
+    enabled = true;
+  };
+
+  this.disable = function() {
+    enabled = false;
+  };
+  this.say = function() {
+    console.log(enabled);
+  };
+}
+
+Machine.prototype.saysay = function() {
+  console.log(this.enabled);
 };
+const Test1 = new Machine();
+
+Test1.enable();
+Test1.say();
+
+
+
+Test1.saysay();
