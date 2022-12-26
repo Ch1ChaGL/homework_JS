@@ -103,6 +103,39 @@ function sum3(a, b, c) {
   return a + b + c;
 }
 
-const f2 = curry3(sum3, 100);
+const f2 = curry3(sum3);
 
 console.log(f2(2, 3));
+
+
+
+const sum5 = (a, b, c, d) => a + b + c + d;
+
+
+function  MyCarry(fn, ...parametrs) {
+  const curried = (...args) => (
+    fn.length > args.length ?
+      MyCarry(fn.bind(null, ...args)) :
+      fn(...args)
+  );
+  return parametrs.length ? curried(...parametrs) : curried;
+}
+
+
+const SumCury = MyCarry(sum5);
+
+console.log(SumCury(2)(3)(4, 5));
+
+
+const power = (exp, n) => Math.pow(n, exp);
+const square = num => Math.pow(num, 2);
+const cube = power.bind(null, 3);
+console.log(power(2, 2));
+console.log(square(3));
+console.log(cube(3));
+
+
+const Machine = () => {
+
+
+};
