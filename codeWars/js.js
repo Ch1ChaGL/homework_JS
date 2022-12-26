@@ -312,3 +312,36 @@
 // }
 
 // console.log(humanReadable(86400));
+
+
+// function add(a, b) {
+//     return a + b;
+//   }
+//   const a = 1;
+//   const b = 2;
+//   const sumt = a + b;
+
+
+//   const curryPartial = (fn, ...par) => {
+//     const curried = (...args) =>
+//       (fn.length > args.length ?
+//         curryPartial(fn.bind(null, ...args)) :
+//         fn(...args));
+//     if(par.length === 0 && fn.length === 0) return fn();
+//     return  (par.length  ? curried(...par) : curried);
+//   };
+
+
+//   console.log(add(a, b) === sumt);
+//   console.log(curryPartial(add)(a)(b) === sumt);
+//   console.log(curryPartial(add, a, b) === sumt);
+//   console.log(curryPartial(add, a, b, 20) === sumt);
+//   console.log(curryPartial(add)(a, b) === sumt);
+//   console.log(curryPartial(add)()(a, b) === sumt);
+//   console.log(curryPartial(add)()(a)()()(b) === sumt);
+//   console.log(curryPartial(add)()(a)()()(b, 5, 6, 7) === sumt);
+//   console.log(curryPartial(curryPartial(add, a), b) === sumt);
+//   console.log(curryPartial(curryPartial(add, a), b));
+//   console.log(curryPartial(add, a), b);
+
+//   console.log(curryPartial(add)(2)());

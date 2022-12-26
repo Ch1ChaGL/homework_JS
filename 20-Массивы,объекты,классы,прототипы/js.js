@@ -168,6 +168,7 @@ console.dir(arr);
 function Point(x, y) { //Прототип, функция-конструктор
   this.x = x;
   this.y = y;
+  this.sayMyXY = function() { console.log(this.x, this.y); };
 }
 Object.prototype.hi = function() {
   console.log('hi');
@@ -251,5 +252,11 @@ console.log(Point.prototype.constructor.prototype === Point.prototype);
 console.log(Point.prototype.constructor.prototype === Point.prototype);
 
 
-p1.hellow();
 
+
+
+
+const b2 = new Point(2, 3);
+
+
+b2.sayMyXY();
