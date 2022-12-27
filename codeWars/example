@@ -104,3 +104,14 @@ Create a function that takes a positive integer and returns the next bigger numb
 12 ==> 21
 513 ==> 531
 2017 ==> 2071
+
+
+11)
+6 kyu
+Playing with digits
+
+89 --> 8¹ + 9² = 89 * 1
+
+695 --> 6² + 9³ + 5⁴= 1390 = 695 * 2
+
+46288 --> 4³ + 6⁴+ 2⁵ + 8⁶ + 8⁷ = 2360688 = 46288 * 51

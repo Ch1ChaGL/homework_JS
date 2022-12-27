@@ -538,45 +538,97 @@
 // console.log(arrnew);
 
 
-const searchMaxIndexOfRight = arr => {
-  for (let i = arr.length - 1; i > 0; i--) {
-    if (arr[i - 1] < arr[i]) return i - 1;
-  }
-  return -1;
-};
-const searchMaxIndexOfMax = (arr, index) => {
-  for (let i = arr.length - 1; i > 0; i--) {
-    if (arr[i] > arr[index]) return i;
-  }
-  return -1;
-};
+// const searchMaxIndexOfRight = arr => {
+//   for (let i = arr.length - 1; i > 0; i--) {
+//     if (arr[i - 1] < arr[i]) return i - 1;
+//   }
+//   return -1;
+// };
+// const searchMaxIndexOfMax = (arr, index) => {
+//   for (let i = arr.length - 1; i > 0; i--) {
+//     if (arr[i] > arr[index]) return i;
+//   }
+//   return -1;
+// };
 
-const swap = (arr, inedxI, indexJ) => {
-  const temp = arr[inedxI];
-  arr[inedxI] = arr[indexJ];
-  arr[indexJ] = temp;
-  return arr;
-};
-const reverse = (arr, indexI) => {
-  let tempArr = arr.slice(indexI + 1);
-  tempArr = tempArr.reverse();
-  arr = arr.slice(0, indexI + 1);
-  return arr.concat(tempArr);
-};
+// const swap = (arr, inedxI, indexJ) => {
+//   const temp = arr[inedxI];
+//   arr[inedxI] = arr[indexJ];
+//   arr[indexJ] = temp;
+//   return arr;
+// };
+// const reverse = (arr, indexI) => {
+//   let tempArr = arr.slice(indexI + 1);
+//   tempArr = tempArr.reverse();
+//   arr = arr.slice(0, indexI + 1);
+//   return arr.concat(tempArr);
+// };
 
 
-function nextBigger(n) {
-  const str = n + '';
-  let arr = [];
-  for (let i = 0; i < str.length; i++) {
-    arr[i] = +str[i];
-  }
-  const indexI = searchMaxIndexOfRight(arr);
-  const indexJ = searchMaxIndexOfMax(arr, indexI);
-  if (indexJ === -1) return -1;
-  arr = swap(arr, indexI, indexJ);
-  arr = reverse(arr, indexI);
-  return +arr.join('');
-}
+// function nextBigger(n) {
+//   const str = n + '';
+//   let arr = [];
+//   for (let i = 0; i < str.length; i++) {
+//     arr[i] = +str[i];
+//   }
+//   const indexI = searchMaxIndexOfRight(arr);
+//   const indexJ = searchMaxIndexOfMax(arr, indexI);
+//   if (indexJ === -1) return -1;
+//   arr = swap(arr, indexI, indexJ);
+//   arr = reverse(arr, indexI);
+//   return +arr.join('');
+// }
 
-console.log(nextBigger(742));
+// console.log(nextBigger(742));
+
+
+
+// function digPow(n, p) {
+//   const str = n + '';
+//   const arr = [];
+//   const pow = p;
+//   for (let i = 0; i < str.length; i++) {
+//     arr[i] = Math.pow(+str[i], p);
+//     p++;
+//   }
+//   const sum = arr.reduce((acum, current) => acum + current);
+//   if (sum < n) return -1;
+//   const answer = parseInt(sum / n);
+//   return answer * n === sum ? answer : -1;
+// }
+
+// function friend(friends) {
+//   return friends.filter(element => element.length === 4)
+//     .filter(element => {
+//       if (isNaN(+element)) {
+//         return element;
+//       }
+//     }
+//     );
+// }
+
+// console.log(friend(['Ryan', 'Jimmy', '123', '4', 'Cool Man']));
+
+
+
+// function persistence(num) {
+//   const str = num + '';
+//   let arr = [];
+//   for (let i = 0; i < str.length; i++) {
+//     arr[i] = +str[i];
+//   }
+//   let count = 0;
+//   while (arr.length > 1) {
+//     const newArr = [];
+//     const sum = arr.reduce((acum, current) => acum * current) + '';
+//     for (let i = 0; i < sum.length; i++) {
+//       newArr[i] = +sum[i];
+//     }
+//     arr = newArr;
+//     count++;
+//   }
+//   return count;
+// }
+
+
+// console.log(persistence(39));
