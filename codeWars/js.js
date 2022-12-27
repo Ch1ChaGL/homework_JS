@@ -345,3 +345,238 @@
 //   console.log(curryPartial(add, a), b);
 
 //   console.log(curryPartial(add)(2)());
+
+
+// let permArr = [],
+//   usedChars = [];
+
+// function getVariants(input) {
+//   let i, ch;
+//   for (i = 0; i < input.length; i++) {
+//     ch = input.splice(i, 1)[0];
+//     usedChars.push(ch);
+//     if (input.length === 0) {
+//       permArr.push(usedChars.slice());
+//     }
+//     getVariants(input);
+//     input.splice(i, 0, ch);
+//     usedChars.pop();
+//   }
+//   return permArr;
+// }
+
+// let objanswer = {};
+// function nextBigger(n) {
+//   const str = n + '';
+//   const strArr = [];
+//   const razprev = -0.1;
+//   let answersol = -1;
+//   objanswer = {};
+//   for (let i = 0; i < str.length; i++) {
+//     strArr[i] = +str[i];
+//   }
+//   permArr = [];
+//   let answer = getVariants(strArr);
+//   for (let i = 0; i < answer.length; i++) {
+//     const num = +answer[i].join('');
+//     const razcur = n - num;
+//     if (n - num < 0) {
+//       objanswer[num] = razcur;
+//     }
+//   }
+//   let min = -1000000000000000000000;
+//   for (const key in objanswer) {
+//     if (objanswer[key] > min && objanswer[key] < 0) {
+//       min = objanswer[key];
+//       answersol = +key;
+//     }
+//   }
+//   objanswer = {};
+//   answer = [];
+//   return answersol;
+// }
+
+// console.log(nextBigger(12));
+// console.log(nextBigger(513));
+// console.log(nextBigger(2017));
+// console.log(nextBigger(414));
+// console.log(nextBigger(144));
+
+// function nextBigger(n) {
+//   const str = n + '';
+//   let count = 1;
+//   const length = str.length;
+//   const arr1 = [];
+//   let arr2 = [];
+//   const strArr = [];
+//   let copyArr = [];
+//   for (let i = 0; i < str.length; i++) {
+//     strArr[i] = str[i];
+//   }
+//   while (str.length >= count) {
+//     if (str.length - count === 0) {
+//       arr1[0] = strArr[1];
+//       arr1[1] = strArr[0];
+//       if (n - +arr1.join('') < 0) return +arr1.join('');
+//       return -1;
+//     }
+//     for (let i = 0; i < str.length; i++) {
+//       arr1[i] = str[i];
+//       copyArr[i] = arr1[i];
+//     }
+
+//     for (let i = 0, j = 0; i < strArr.length; j++, i++) {
+//       if (i >= strArr.length - count) {
+//         arr2.push(+arr1[i]);
+//         copyArr.splice(j, 1);
+//         j--;
+//       }
+//     }
+//     let arr3 = [];
+//     while (arr2.length !== 0) {
+//       let max = +arr2[0];
+//       for (let i = 0; i < arr2.length; i++) {
+//         if (max < +arr2[i]) max = +arr2[i];
+//       }
+//       for (let i = 0; i < arr2.length; i++) {
+//         if (+arr2[i] === max) {
+//           arr3.push(+arr2[i]);
+//           arr2.splice(i, 1);
+//         }
+//       }
+//     }
+//     const answer = +(copyArr.join('') + arr3.join(''));
+//     if (n - answer < 0) return answer;
+//     count++;
+//     arr2 = [];
+//     arr3 = [];
+//     copyArr = [];
+//   }
+//   return -1;
+// }
+
+
+// console.log(nextBigger(144));
+// while (arr1.length !== 0) {
+//     let max = +arr1[0];
+//     for (let i = 0; i < arr1.length; i++) {
+//       if (max < +arr1[i]) max = +arr1[i];
+//     }
+//     for (let i = 0; i < arr1.length; i++) {
+//       if (+arr1[i] === max) {
+//         arr2.push(+arr1[i]);
+//         arr1.splice(i, 1);
+//       }
+//     }
+//   }
+
+
+
+
+
+
+// function nextBigger(n) {
+//   const str = n + '';
+//   let arr1 = [];
+//   for (let i = 0; i < str.length; i++) {
+//     arr1[i] = +str[i];
+//   }
+//   arr1 = arr1.reverse();
+//   for (let i = 1; i < arr1.length - 1; i++) {
+//     for (let j = 1; j < arr1.length; j++) {
+//       if (arr1[j] < arr1[j - 1]) {
+//         const temp = arr1[j];
+//         arr1[j] = arr1[j - 1];
+//         arr1[j - 1] = temp;
+//         arr1 = arr1.reverse();
+//         return +arr1.join('');
+//       }
+//     }
+//   }
+//   if (arr1.length === 2) {
+//     if (n === +arr1.join('')) {
+//       return -1;
+//     }
+//     if (n > +arr1.join('')) return -1;
+//     return +arr1.join('');
+//   }
+//   return -1;
+// }
+
+// console.log(nextBigger(111));
+
+
+// function nextPermutation(array) {
+//   // Find non-increasing suffix
+//   let i = array.length - 1;
+//   while (i > 0 && array[i - 1] >= array[i])
+//     i--;
+//   if (i <= 0)
+//     return false;
+
+//   // Find successor to pivot
+//   let j = array.length - 1;
+//   while (array[j] <= array[i - 1])
+//     j--;
+//   let temp = array[i - 1];
+//   array[i - 1] = array[j];
+//   array[j] = temp;
+
+//   // Reverse suffix
+//   j = array.length - 1;
+//   while (i < j) {
+//     temp = array[i];
+//     array[i] = array[j];
+//     array[j] = temp;
+//     i++;
+//     j--;
+//   }
+//   return true;
+// }
+// const arrnew = [1, 5, 3, 4, 6, 5, 3, 1, 2, 5, 5, 9, 2];
+// console.log(nextPermutation(arrnew));
+// console.log(arrnew);
+
+
+const searchMaxIndexOfRight = arr => {
+  for (let i = arr.length - 1; i > 0; i--) {
+    if (arr[i - 1] < arr[i]) return i - 1;
+  }
+  return -1;
+};
+const searchMaxIndexOfMax = (arr, index) => {
+  for (let i = arr.length - 1; i > 0; i--) {
+    if (arr[i] > arr[index]) return i;
+  }
+  return -1;
+};
+
+const swap = (arr, inedxI, indexJ) => {
+  const temp = arr[inedxI];
+  arr[inedxI] = arr[indexJ];
+  arr[indexJ] = temp;
+  return arr;
+};
+const reverse = (arr, indexI) => {
+  let tempArr = arr.slice(indexI + 1);
+  tempArr = tempArr.reverse();
+  arr = arr.slice(0, indexI + 1);
+  return arr.concat(tempArr);
+};
+
+
+function nextBigger(n) {
+  const str = n + '';
+  let arr = [];
+  for (let i = 0; i < str.length; i++) {
+    arr[i] = +str[i];
+  }
+  const indexI = searchMaxIndexOfRight(arr);
+  const indexJ = searchMaxIndexOfMax(arr, indexI);
+  if (indexJ === -1) return -1;
+  arr = swap(arr, indexI, indexJ);
+  arr = reverse(arr, indexI);
+  return +arr.join('');
+}
+
+console.log(nextBigger(742));
