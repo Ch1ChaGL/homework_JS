@@ -166,7 +166,11 @@ console.log(tagDate('Danil'));
 
 
 //Функциональное наследование
-
+/*Как я понимаю функциональное наследование отличается
+от прототипного, как минимум тем,
+что мы имеем замыкание, а функция конструктор, дает нашему
+объекту свойства которые меняют значения в замыкание,
+ потому что сам объект поле enabled не имеет */
 function Machine() {
   let enabled = false;
   this.enable = function() {
@@ -188,7 +192,109 @@ const Test1 = new Machine();
 
 Test1.enable();
 Test1.say();
-
+Test1.disable();
 
 
 Test1.saysay();
+
+
+const Machine2 = () => {
+  let count = 0;
+  let enabled = false;
+  const obj = {};
+  obj.enable = function() {
+    count++;
+    console.log(count);
+    enabled = true;
+  };
+  obj.disable = function() {
+    count++;
+    console.log(count);
+    enabled = false;
+  };
+  obj.say = function() {
+
+    console.log(++count, enabled);
+  };
+  return obj;
+};
+
+
+const Test2 = Machine2();
+const Test3 = Machine2();
+Test2.say();
+Test2.enable();
+Test2.say();
+Test2.disable();
+Test2.say();
+
+
+Test3.say();
+Test3.enable();
+Test3.say();
+Test2.disable();
+Test2.say();
+
+
+//Use method bind() to existing function to apply
+//preceding arguments and obtain a new function.
+
+// const module2 = {
+//   x: 42,
+//   getX() {
+//     return this.x;
+//   }
+// };
+
+// const unboundGetX = module2.getX;
+// console.log(unboundGetX());
+// // The function gets invoked at the global scope
+// // expected output: undefined
+
+// const boundGetX = unboundGetX.bind(module2);
+// console.log(boundGetX());
+// // expected output: 42
+
+
+const H = (exp, ...args) => {
+  const sum = args.reduce((s, a) => (s + Math.pow(a, exp)), 0);
+  const avg = sum / args.length;
+  return Math.pow(avg, (1 / exp));
+};
+
+// Use method bind() to create new functions from function H.
+// Create function `average` that returns arithmetic mean (H₁) of the arguments.
+// Create function `rootMeanSquare` that returns quadratic mean (H₂).
+
+const average = H.bind(null, 1);
+const rootMeanSquare = H.bind(null, 2);
+
+console.log(average(1, 2, 3));
+console.log(rootMeanSquare(1, 2, 3));
+console.log(H(2, 1, 2, 3));
+
+//Implement one-argument function that passes its argument
+// to another function and returns an object which has the same function:
+
+const EXPECTED_PIN = '4967';
+const checkPin = (...code) => code.join('') === EXPECTED_PIN;
+
+// Implement function press
+// that allows to enter pin code by one character,
+// e.g. press('3').press('4').press('5').press('6')
+//
+// For hint use https://github.com/HowProgrammingWorks/Cheatsheet
+
+const password = [];
+const press = a => {
+  const obj = {};
+  obj.press = press;
+  password.push(a);
+  if (checkPin(...password)) return true;
+  return obj;
+};
+
+
+console.log(press(4).press(9).press(6).press(7) === checkPin(4, 9, 6, 7));
+const a  = [1, 2, 3, 4].join('');
+console.log(a);

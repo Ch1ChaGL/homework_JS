@@ -94,3 +94,13 @@ You can find some examples in the test fixtures.
 9)
 4 kyu
 Currying vs. Partial Application
+
+
+10)
+4 kyu
+Next bigger number with the same digits
+Create a function that takes a positive integer and returns the next bigger number that can be formed by rearranging its digits. For example:
+
+12 ==> 21
+513 ==> 531
+2017 ==> 2071
