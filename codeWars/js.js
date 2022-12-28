@@ -632,3 +632,99 @@
 
 
 // console.log(persistence(39));
+
+
+// function openOrSenior(data) {
+//   let i = 0;
+//   const answer = [];
+//   data.forEach(element => {
+//     if (element[0] >= 55 && element[1] > 7) answer[i] = 'Senior';
+//     else answer[i] = 'Open';
+//     i++;
+//   });
+//   return answer;
+// }
+
+
+// console.log(openOrSenior([[45, 12], [55, 21], [19, -2], [104, 20]]));
+
+// const str = 'How can mirrors be real if our eyes aren\'t real';
+
+// String.prototype.toJadenCase = function() {
+//   const arr = this.split(' ');
+//   for (const key in arr) {
+//     arr[key] = arr[key][0].toUpperCase() + arr[key].slice(1);
+//   }
+//   return arr.join(' ');
+// };
+
+// str.toJadenCase();
+
+
+// function descendingOrder(n) {
+//   const str = n + '';
+//   const arr = [];
+//   for (let i = 0; i < str.length; i++) {
+//     arr[i] = +str[i];
+//   }
+
+//   for (let i = 1; i <= arr.length - 1; i++) {
+//     for (let j = 1; j <= arr.length - 1; j++) {
+//       if (arr[j - 1] < arr[j]) {
+//         const temp  = arr[j];
+//         arr[j] = arr[j - 1];
+//         arr[j - 1] = temp;
+//       }
+//     }
+//   }
+//   return +arr.join('');
+// }
+
+
+// console.log(descendingOrder(123));
+
+
+// function getSum(a, b) {
+//   if (a < b) {
+//     let count = a;
+//     let sum = 0;
+//     while (count <= b) {
+//       sum += count;
+//       count++;
+//     }
+//     return sum;
+//   } else {
+//     let count = a;
+//     let sum = 0;
+//     while (count >= b) {
+//       sum += count;
+//       count--;
+//     }
+//     return sum;
+//   }
+// }
+// console.log(getSum(0, -2));
+
+
+// function findShort(s) {
+//   const arr = s.split(' ');
+//   let length = arr[0].length;
+//   arr.forEach(element => {
+//     if (element.length < length) {
+//       length = element.length;
+//     }
+//   });
+//   return length;
+
+// }
+
+// function isPangram(string) {
+//   const alph = 'absdefghiklmnopqrsuvwxyz';
+//   const lower = string.toLowerCase();
+//   for (let  i = 0; i < alph.length; i++) {
+//     if (lower.indexOf(alph[i]) === -1) return false;
+//   }
+//   return true;
+// }
+
+// isPangram('Hello');
