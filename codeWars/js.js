@@ -728,3 +728,121 @@
 // }
 
 // isPangram('Hello');
+
+// function reverseWords(str) {
+//   if (str.length === 0) return '';
+//   const arr = str.split(' ');
+//   for (let i = 0; i < arr.length; i++) {
+//     const arr2 = arr[i].split('').reverse();
+//     arr[i] = arr2.join('');
+//   }
+//   return arr.join(' ');
+// }
+
+
+// console.log(reverseWords('The quick brown fox jumps over the lazy dog.'));
+
+// const a1 = [5, 5, 2, 7, 8, 4, 5, 4, 10, 3, 0, 1, 3, 6, 9, 2, 9, 0, 9, 5];
+// const a2 = [4, 1, 64, 36, 100, 4, 81, 16,
+// 81, 81, 49, 0, 9, 25, 25, 25, 16, 0, 25, 9];
+
+// function comp(array1, array2) {
+//   if (array1  === null || array2 === null) return false;
+//   if (array1.length === 0 || array2.length === 0) return false;
+//   let answer = true;
+//   for (let i = 0; i < array1.length; i++) {
+//     if (array2.find(el => el === array1[i] * array1[i]) !== undefined) {
+//       const index = array2.indexOf(array1[i] * array1[i]);
+//       array2.splice(index, 1);
+//       array1.splice(i, 1);
+//       i--;
+//       answer = true;
+//     } else return false;
+//   }
+//   return answer;
+// }
+
+// console.log(comp(a1, a2));
+
+
+// function highAndLow(numbers) {
+//   let arr = numbers.split(' ');
+//   arr = arr.map(el => +el);
+//   return Math.max(...arr) + ' ' + Math.min(...arr);
+// }
+
+
+// highAndLow('1 2 3');
+
+
+// function towerBuilder(nFloors) {
+//   let length = 1;
+//   const arr = [];
+//   for (let i = 1; i < nFloors; i++) {
+//     length += 2;
+//   }
+//   let lengthFloors = 1;
+//   let str = '';
+//   for (let i = 0; i < nFloors; i++) {
+//     for (let j = 0; j < length; j++) {
+//       if (str.length === length) break;
+//       if (j === Math.floor((length / 2)) - Math.floor(lengthFloors / 2)) {
+//         let count = lengthFloors;
+//         while (count > 0) {
+//           count--;
+//           str += '*';
+//         }
+//         lengthFloors += 2;
+//       } else {
+//         str += ' ';
+//       }
+//     }
+//     arr.push(str);
+//     str = '';
+//   }
+//   return arr;
+// }
+
+
+
+// Но конечно круто , но я сделал без репит,
+// можно было бы во много раз проще сделать вот так
+// function towerBuilder(nFloors) {
+//   var tower = [];
+//   for (var i = 0; i < nFloors; i++) {
+//     tower.push(" ".repeat(nFloors - i - 1)
+//              + "*".repeat((i * 2)+ 1)
+//              + " ".repeat(nFloors - i - 1));
+//   }
+//   return tower;
+// }
+// console.log(towerBuilder(3));
+
+// function validParentheses(parens) {
+//   const arr = parens.split('');
+//   let count = 0;
+//   for (const key in arr) {
+//     if (arr[key] === '(') { count++; continue; }
+//     if (arr[key] === ')')  { count--; }
+//     if (count < 0) return false;
+//   }
+//   return count === 0;
+// }
+// console.log(validParentheses('())('));
+
+
+// function duplicateEncode(word) {
+//   const str = word.toLowerCase();
+//   let answer = '';
+//   const arr = str.split('');
+//   arr.forEach(element => {
+//     let count = 0;
+//     arr.forEach(element2 => { if (element === element2) count++; });
+//     if (count !== 1) answer += ')';
+//     else answer += '(';
+//   });
+//   return answer;
+// }
+
+
+// console.log(duplicateEncode('recede'));
