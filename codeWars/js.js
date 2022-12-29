@@ -728,3 +728,38 @@
 // }
 
 // isPangram('Hello');
+
+// function reverseWords(str) {
+//   if (str.length === 0) return '';
+//   const arr = str.split(' ');
+//   for (let i = 0; i < arr.length; i++) {
+//     const arr2 = arr[i].split('').reverse();
+//     arr[i] = arr2.join('');
+//   }
+//   return arr.join(' ');
+// }
+
+
+// console.log(reverseWords('The quick brown fox jumps over the lazy dog.'));
+
+// const a1 = [5, 5, 2, 7, 8, 4, 5, 4, 10, 3, 0, 1, 3, 6, 9, 2, 9, 0, 9, 5];
+// const a2 = [4, 1, 64, 36, 100, 4, 81, 16,
+// 81, 81, 49, 0, 9, 25, 25, 25, 16, 0, 25, 9];
+
+// function comp(array1, array2) {
+//   if (array1  === null || array2 === null) return false;
+//   if (array1.length === 0 || array2.length === 0) return false;
+//   let answer = true;
+//   for (let i = 0; i < array1.length; i++) {
+//     if (array2.find(el => el === array1[i] * array1[i]) !== undefined) {
+//       const index = array2.indexOf(array1[i] * array1[i]);
+//       array2.splice(index, 1);
+//       array1.splice(i, 1);
+//       i--;
+//       answer = true;
+//     } else return false;
+//   }
+//   return answer;
+// }
+
+// console.log(comp(a1, a2));
