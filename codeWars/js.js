@@ -763,3 +763,86 @@
 // }
 
 // console.log(comp(a1, a2));
+
+
+// function highAndLow(numbers) {
+//   let arr = numbers.split(' ');
+//   arr = arr.map(el => +el);
+//   return Math.max(...arr) + ' ' + Math.min(...arr);
+// }
+
+
+// highAndLow('1 2 3');
+
+
+// function towerBuilder(nFloors) {
+//   let length = 1;
+//   const arr = [];
+//   for (let i = 1; i < nFloors; i++) {
+//     length += 2;
+//   }
+//   let lengthFloors = 1;
+//   let str = '';
+//   for (let i = 0; i < nFloors; i++) {
+//     for (let j = 0; j < length; j++) {
+//       if (str.length === length) break;
+//       if (j === Math.floor((length / 2)) - Math.floor(lengthFloors / 2)) {
+//         let count = lengthFloors;
+//         while (count > 0) {
+//           count--;
+//           str += '*';
+//         }
+//         lengthFloors += 2;
+//       } else {
+//         str += ' ';
+//       }
+//     }
+//     arr.push(str);
+//     str = '';
+//   }
+//   return arr;
+// }
+
+
+
+// Но конечно круто , но я сделал без репит,
+// можно было бы во много раз проще сделать вот так
+// function towerBuilder(nFloors) {
+//   var tower = [];
+//   for (var i = 0; i < nFloors; i++) {
+//     tower.push(" ".repeat(nFloors - i - 1)
+//              + "*".repeat((i * 2)+ 1)
+//              + " ".repeat(nFloors - i - 1));
+//   }
+//   return tower;
+// }
+// console.log(towerBuilder(3));
+
+// function validParentheses(parens) {
+//   const arr = parens.split('');
+//   let count = 0;
+//   for (const key in arr) {
+//     if (arr[key] === '(') { count++; continue; }
+//     if (arr[key] === ')')  { count--; }
+//     if (count < 0) return false;
+//   }
+//   return count === 0;
+// }
+// console.log(validParentheses('())('));
+
+
+// function duplicateEncode(word) {
+//   const str = word.toLowerCase();
+//   let answer = '';
+//   const arr = str.split('');
+//   arr.forEach(element => {
+//     let count = 0;
+//     arr.forEach(element2 => { if (element === element2) count++; });
+//     if (count !== 1) answer += ')';
+//     else answer += '(';
+//   });
+//   return answer;
+// }
+
+
+// console.log(duplicateEncode('recede'));
