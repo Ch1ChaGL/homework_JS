@@ -147,3 +147,29 @@ Write a function that takes a string of parentheses, and determines if the order
 Duplicate Encoder
 The goal of this exercise is to convert a string to a new string where each character in the new string is "(" if that character appears only once in the original string, or ")" if that character appears more than once in the original string. Ignore capitalization when determining if a character is a duplicate.
 424
+
+
+6 kyu
+Counting Duplicates
+434
+Count the number of Duplicates
+Write a function that will return the count of distinct case-insensitive 
+alphabetic characters and numeric digits that occur more than once in 
+the input string. The input string can be assumed to contain 
+only alphabets (both uppercase and lowercase) and numeric digits.
+
+=>442
+
+6 kyu
+Unique In Order
+Implement the function unique_in_order which takes as argument a sequence and returns a list of items without any elements with the same value next to each other and preserving the original order of elements.
+
+For example:
+
+uniqueInOrder('AAAABBBCCDAABBB') == ['A', 'B', 'C', 'D', 'A', 'B']
+uniqueInOrder('ABBCcAD')         == ['A', 'B', 'C', 'c', 'A', 'D']
+uniqueInOrder([1,2,2,3,3])       == [1,2,3]
+
+=>450
+
+

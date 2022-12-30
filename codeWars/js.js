@@ -846,3 +846,96 @@
 
 
 // console.log(duplicateEncode('recede'));
+
+
+
+// function duplicateCount(text) {
+//   const _text = text.toLowerCase();
+//   const obj = {};
+//   for (let i = 0; i < _text.length; i++) {
+//     if (_text[i] in obj) {
+//       obj[_text[i]] += 1;
+//     } else {
+//       obj[_text[i]] = 1;
+//     }
+//   }
+//   let count = 0;
+//   for (const key in obj) {
+//     if (obj[key] > 1) {
+//       count++;
+//     }
+//   }
+//   return count;
+// }
+
+
+// console.log(duplicateCount('abcda'));
+
+
+
+// const uniqueInOrder = function(iterable) {
+//   let arr = [];
+//   if (typeof iterable === 'string') arr = iterable.split('');
+//   else { arr = iterable; }
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] === arr[i + 1]) {
+//       arr.splice(i + 1, 1);
+//       i--;
+//     }
+//   }
+//   return arr;
+// };
+
+
+// console.log(uniqueInOrder('Aaaa4'));
+
+/*of course, I could have solved it differently,
+and before I know the answer, I could also simplify this
+ code by replacing foreach with another loop, and indeed take it and put all
+the words in the directory and just glue them together
+ then in one line, but i just wanted
+ to solve this assignment with bubble sort */
+/*I saw the solution and only then remembered that js has a sort method */
+
+// function order(words) {
+//   const arr = words.split(' ');
+//   for (let i = 1; i < arr.length; i++) {
+//     for (let j = 1; j < arr.length; j++) {
+//       const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+//       let current = 0;
+//       let prev = 0;
+//       numbers.forEach(el => {
+//         let index = 0;
+//         if (arr[j].indexOf(el) !== -1) {
+//           index = arr[j].indexOf(el);
+//           current = +arr[j][index];
+//         }
+//         if (arr[j - 1].indexOf(el) !== -1) {
+//           index = arr[j - 1].indexOf(el);
+//           prev = +arr[j - 1][index];
+//         }
+//       });
+//       if (current < prev) {
+//         const temp = arr[j];
+//         arr[j] = arr[j - 1];
+//         arr[j - 1] = temp;
+//       }
+//     }
+//   }
+//   return arr.join(' ');
+// }
+
+// console.log(order('Er3nst J2amila F5iona Igo4r B6ob Heid1i'));
+// const str = 'Thi3s';
+// console.log(str.indexOf('3', '2', '3', '4', '5', '6', '7', '8', '9'));
+
+
+//Блин реально намного быстрее, только не сразу понял, почему там вычитание,
+//но потом в документации прочел почему
+
+function order(words) {
+  return words.split(' ')
+    .sort((a, b) =>  a.match(/\d/) - b.match(/\d/)).join(' ');
+}
+
+console.log(order('Er3nst J2amila F5iona Igo4r B6ob Heid1i'));
