@@ -933,9 +933,125 @@ the words in the directory and just glue them together
 //Блин реально намного быстрее, только не сразу понял, почему там вычитание,
 //но потом в документации прочел почему
 
-function order(words) {
-  return words.split(' ')
-    .sort((a, b) =>  a.match(/\d/) - b.match(/\d/)).join(' ');
+// function order(words) {
+//   return words.split(' ')
+//     .sort((a, b) =>  a.match(/\d/) - b.match(/\d/)).join(' ');
+// }
+
+// console.log(order('Er3nst J2amila F5iona Igo4r B6ob Heid1i'));
+
+
+// const min = function(list) {
+
+//   return Math.min(list);
+// };
+
+// const max = function(list) {
+
+//   return Math.max(list);
+// };
+
+// console.log(min([-52, 56, 30, 29, -54, 0, -110]));
+
+
+
+
+// const alphabet = {
+//   A: 1,
+//   B: 2,
+//   C: 3,
+//   D: 4,
+//   E: 5,
+//   F: 6,
+//   G: 7,
+//   H: 8,
+//   I: 9,
+//   J: 10,
+//   K: 11,
+//   L: 12,
+//   M: 13,
+//   N: 14,
+//   O: 15,
+//   P: 16,
+//   Q: 17,
+//   R: 18,
+//   S: 19,
+//   T: 20,
+//   U: 21,
+//   V: 22,
+//   W: 23,
+//   X: 24,
+//   Y: 25,
+//   Z: 26,
+// };
+// function alphabetPosition(text) {
+//   const arr = text.toUpperCase().replace(' ', '').split('');
+//   const answerArr = [];
+//   arr.forEach(element => {
+//     if (element in alphabet) {
+//       answerArr.push(alphabet[element]);
+//     }
+//   });
+//   return answerArr.join(' ');
+// }
+
+// console.log(alphabetPosition('abcd  ,efg ,hik '));
+
+// function SeriesSum(n) {
+//   if (n === 0) return '0.00';
+//   let x = 4;
+//   let answer = 1;
+//   let count = 1;
+//   while (count < n) {
+//     count++;
+//     answer += (1 / x);
+//     x += 3;
+//   }
+//   answer = answer.toFixed(2);
+//   return answer + '';
+// }
+
+// console.log(SeriesSum(2));
+
+
+
+// function deleteNth(arr, n) {
+//   const obj = {};
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] in obj) obj[arr[i]] += 1;
+//     else obj[arr[i]] = 1;
+//     if (obj[arr[i]] > n) { arr.splice(i, 1); i--; }
+//   }
+//   return arr;
+// }
+
+// console.log(deleteNth([1, 2, 3, 1, 1, 2, 1, 2, 3, 3, 2, 4, 5, 3, 1], 3));
+
+// function validatePIN(pin) {
+//   return !!(pin.match(/^\d{4}$/) || pin.match(/^\d{6}$/));
+// }
+
+// function sumArray(array) {
+//   if (!array || array.length < 3) return 0;
+//   const min  = Math.min(...array);
+//   const max  = Math.max(...array);
+//   let sum = 0;
+//   array.forEach(element => {
+//     if (element < max || element > min) sum += element;
+//   });
+//   return sum - max - min;
+// }
+
+// function abbrevName(name) {
+//   const arr = name.split(' ');
+//   return arr[0][0].toUpperCase() + '.' + arr[1][0].toUpperCase();
+// }
+
+
+function expandedForm(num) {
+  const arr = num.toString().split('');
+  
 }
 
-console.log(order('Er3nst J2amila F5iona Igo4r B6ob Heid1i'));
+
+console.log(expandedForm(70304));
