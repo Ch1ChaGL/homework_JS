@@ -63,3 +63,29 @@ console.dir(menu);
 const id = Symbol('id');
 console.log(id.toString());
 console.log(id.description);
+
+
+//4.8 Преобразование объектов в примитивы
+
+function Person(name, age) {
+
+  this.name = name;
+  this.age = age;
+  this[Symbol.toPrimitive] = hint => {
+    //hint: 'string' , 'nuber', 'default';
+    if (hint === 'string') return  `Hello, ${this.name}`;
+    return this.age;
+  };
+}
+
+const Dave = new Person('Dave', 20);
+const Mike = new Person('Mike', 30);
+console.log(Dave + Mike); //50
+console.log(String(Dave)); // Hello, Dave
+
+//Типы данных
+
+const str = 'Привет';
+
+console.log(str.test = 5); // (*)
+
