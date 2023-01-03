@@ -1048,10 +1048,24 @@ the words in the directory and just glue them together
 // }
 
 
-function expandedForm(num) {
-  const arr = num.toString().split('');
-  
+// function expandedForm(num) {
+//   const arr = num.toString().split('');
+
+// }
+
+
+// console.log(expandedForm(70304));
+
+function findUniq(arr) {
+  const set = new Set();
+  let nonUniq;
+  for (const value of arr) {
+    if (set.has(value)) nonUniq = value;
+    else { set.add(value); }
+  }
+  for (const _value of set) {
+    if (_value !== nonUniq) return _value;
+  }
 }
 
-
-console.log(expandedForm(70304));
+console.log(findUniq([ 1, 1, 1 ]));
