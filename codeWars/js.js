@@ -1048,10 +1048,33 @@ the words in the directory and just glue them together
 // }
 
 
-function expandedForm(num) {
-  const arr = num.toString().split('');
-  
-}
+// function expandedForm(num) {
+//   const arr = num.toString().split('');
+
+// }
 
 
-console.log(expandedForm(70304));
+// console.log(expandedForm(70304));
+// let time = performance.now();
+
+// function findUniq(arr) {
+//   const set = new Set(arr);
+//   const setTwo = new Set();
+//   let nonUniq;
+//   for (const value of arr) {
+//     if (setTwo.has(value)) {
+//       nonUniq = value; break;
+//     } else { setTwo.add(value); }
+//   }
+//   for (const _value of set) {
+//     if (_value !== nonUniq) return _value;
+//   }
+// }
+
+// console.log(findUniq([ 1, 0, 0 ]));
+// time = performance.now() - time;
+// console.log('Время выполнения = ', time);
+
+let count = 1;
+console.log(`${count++} sheep...`.repeat(3));
+
