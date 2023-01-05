@@ -1075,6 +1075,69 @@ the words in the directory and just glue them together
 // time = performance.now() - time;
 // console.log('Время выполнения = ', time);
 
-let count = 1;
-console.log(`${count++} sheep...`.repeat(3));
+// let count = 1;
+// console.log(`${count++} sheep...`.repeat(3));
 
+// function binaryToString(binary) {
+//   const arr = [];
+//   while (binary.length > 0) {
+//     const num = parseInt(binary.slice(0, 8), 2);
+//     binary = binary.slice(8, binary.length);
+//     arr.push(num);
+//   }
+//   return String.fromCharCode(...arr);
+// }
+
+// console.log(binaryToString('001111000011101000101001'));
+
+
+// function bingo(ticket, win) {
+//   let count = 0;
+//   for (const miniWin of ticket) {
+//     const sort = miniWin[0].split('').sort().join('');
+//     if (binarySearch(sort, miniWin[1]) !== false) count++;
+//     if (count >= win) return 'Winner!';
+//   }
+//   return 'Loser!';
+// }
+
+// console.log(bingo([['TSAROC', 84], ['WQOSJYCS', 76], ['XVZDMMDX', 88],
+//   ['LOMJQG', 88], ['CDTG', 84], ['PE', 89]], 3));
+
+// function binarySearch(list, item) {
+//   let low = 0;
+//   let high = list.length - 1;
+//   while (low <= high) {
+//     const mid = Math.floor((low + high) / 2);
+//     const guess = list[mid].charCodeAt(0);
+//     if (guess === item) return mid;
+//     if (guess > item) high = mid - 1;
+//     else {
+//       low = mid + 1;
+//     }
+//   }
+//   return false;
+// }
+
+// function moreZeros(s) {
+//   const set = new Set(s);
+//   const arr = [];
+//   for (const value of set) {
+//     const binary = value.charCodeAt(0).toString(2);
+//     if (binary.split('')
+//     .filter(el => el === '0').length > 3) arr.push(value);
+//   }
+//   return arr;
+// }
+// console.log(moreZeros('abcdeabcde'));
+
+// function solution(string) {
+//   string = string.split('').map(el => {
+//     const num = el.charCodeAt(0);
+//     if (num <= 90 && num >= 65) return el = ' ' + el;
+//     return el;
+//   }).join('');
+//   return string;
+// }
+
+// console.log(solution('camelCasingTest'));

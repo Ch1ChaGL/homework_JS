@@ -208,3 +208,45 @@ console.log(arr[Math.floor((arr.length - 1) / 2)]);
 
 
 
+
+const range = {
+  from: 1,
+  to: 5,
+
+  [Symbol.iterator]() {
+    this.current = this.from;
+    return this;
+  },
+
+  next() {
+    if (this.current <= this.to) {
+      return { done: false, value: this.current++ };
+    } else {
+      return { done: true };
+    }
+  }
+};
+
+for (const values of range) {
+  console.log(values);
+  console.log(range.current);
+}
+
+
+const objtest = {
+  // a: 13,
+  // b: 10,
+  c() { console.log('Hi'); },
+  d() {},
+
+  // [Symbol.iterator]() {
+  //   return {
+
+  //   };
+  // }
+};
+
+
+for (const value of Object.values(objtest)) {
+  console.log(value);
+}
