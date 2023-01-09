@@ -299,9 +299,169 @@ printNumbers(1, 5);
 
 let i = 0;
 
-setTimeout(() => alert(i), 100); // 100000000 , потому что вызовется после цикла
+//setTimeout(() => alert(i), 100);
+// 100000000 , потому что вызовется после цикла
 
 // предположим, что время выполнения этой функции >100 мс
 for (let j = 0; j < 100000000; j++) {
   i++;
 }
+
+
+
+
+//Декораторы и переадресация вызова, call / apply
+
+
+
+function slow(x) {
+  console.log(`Called with ${x}`);
+  return x;
+}
+
+
+
+function cachingDecorator(func) {
+  const cache = new Map();
+
+  return function(x) {
+    if (cache.has(x)) {
+      return cache.get(x);
+    }
+
+    const result = func(x);
+    cache.set(x, result);
+    return result;
+  };
+}
+
+
+const slowDec = cachingDecorator(slow);
+
+console.log(slowDec(1));
+console.log('Again: ' + slowDec(1));
+console.log(slowDec(2));
+console.log('Again: ' + slowDec(2));
+
+
+
+const sum5 = function(args) {
+  return args.reduce((x, y) => x + y);
+};
+
+const sumDec = cachingDecorator(sum5);
+
+console.log(sumDec([2, 3]));
+
+
+
+
+const worker = {
+  someMethod() {
+    return 1;
+  },
+
+  slow(x) {
+    // здесь может быть страшно тяжёлая задача для процессора
+    console.log('Called with ' + x);
+    return x * this.someMethod(); // (*)
+  }
+};
+
+
+
+function sayHi2() {
+  console.log(this.name);
+}
+
+const user = { name: 'John' };
+const admin = { name: 'Admin' };
+
+// используем 'call' для передачи различных объектов в качестве 'this'
+sayHi2.call(user); // John
+sayHi2.call(admin); // Admin
+
+
+
+function cachingDecorator2(func) {
+  const cache = new Map();
+  return function(x) {
+    if (cache.has(x)) {
+      return cache.get(x);
+    }
+
+    const result = func.call(this, x);
+    cache.set(x, result);
+
+    return result;
+  };
+}
+
+
+worker.slow = cachingDecorator2(worker.slow);
+
+
+
+console.log(worker.slow(2));
+
+console.log(worker.slow(2));
+
+
+
+function spy(func) {
+  function wrapper(...args) {
+    wrapper.calls.push(args);
+    return func.apply(this, args);
+  }
+  wrapper.calls = [];
+  return wrapper;
+}
+
+
+const test10 = (a, b) => a + b;
+
+const test10spy = spy(test10);
+
+console.log(test10spy(1, 2));
+console.log(test10spy(3, 4));
+
+
+for (const args of test10spy.calls) {
+  console.log('call:' + args.join());
+}
+
+
+
+function delay(func, time) {
+
+  function wrapper(...args) {
+    setTimeout(() => func.apply(this, args), time);
+  }
+  return wrapper;
+}
+
+
+function hello(x) {
+  console.log(x);
+}
+
+
+const delayHello = delay(hello, 5000);
+
+delayHello('Привет');
+
+
+
+function debounce(f, ms) {
+  let flag = false;
+  return function(...args) {
+    if (flag) return;
+    f.apply(this, args);
+    flag = true;
+    setTimeout(() => flag = false, ms);
+  };
+}
+
+
+
+
