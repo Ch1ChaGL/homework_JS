@@ -465,3 +465,32 @@ function debounce(f, ms) {
 
 
 
+function throttle(func, ms) {
+  let isThrotled = false,
+    savedArgs,
+    savedThis;
+  function wrapper(...args) {
+    if (isThrotled) {
+      savedArgs = args;
+      savedThis = this;
+      return;
+    }
+    func.apply(this, args);
+    isThrotled = true;
+    setTimeout(() =>  {
+      isThrotled = false;
+      if (savedArgs) {
+        wrapper.apply(savedThis, savedArgs);
+        savedArgs = savedThis = null;
+      }
+    }, ms);
+  }
+  return wrapper;
+}
+
+
+
+
+
+
+
