@@ -119,3 +119,92 @@ const test2 = partial(
   user3.say, new Date().getHours() + ':' + new Date().getSeconds());
 
 test2.call(user2, 'TEST');
+
+
+
+
+const worker  = {
+  name: 'worker',
+  someMethod() {
+    return 1;
+  },
+  slow(x) {
+    console.log(this.name + ' ' + x);
+  }
+};
+
+
+function cachingDecorator(func) {
+  const cache = new Map();
+  return function(...args) {
+    const key = [...args];
+    if (cache.has(key)) return cache.get(key);
+    const result = func.call(this, ...args);
+    cache.set(key, result);
+    return result;
+  };
+}
+
+const Danil = {
+  name: 'danil',
+};
+
+
+const newTest = cachingDecorator(worker.slow);
+
+newTest.call(Danil, ' = 2'); // danil = 2
+
+
+
+
+
+
+function hello() {
+  console.log('hello', this);
+}
+
+hello();
+
+const testPerson = {
+  name: 'test',
+};
+
+const person = {
+  name: 'danil',
+  age: 25,
+  sayHello: hello,
+  sayHelloWindow: hello.bind(testPerson),
+  logInfo(job) {
+    console.log(`Name is ${this.name}`);
+    console.log(`Age is ${this.age}`);
+    console.log(`job is ${job}`);
+  }
+};
+
+
+const lena = {
+  name: 'Lena',
+  age: 24
+};
+person.sayHello();
+person.sayHelloWindow();
+
+
+person.logInfo.bind(lena)();
+
+
+//Передать значение через bind
+person.logInfo.bind(lena, 'Повар')();
+
+
+
+//Метод call сразу вызывает функцию
+person.logInfo.call(lena, 'повар');
+
+
+
+//метод apply
+person.logInfo.apply(lena, ['Повар']);
+
+
+
