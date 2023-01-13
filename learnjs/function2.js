@@ -208,3 +208,50 @@ person.logInfo.apply(lena, ['Повар']);
 
 
 
+
+
+
+const worker2 = {
+  name: 2,
+  someMethod() {
+    return 2;
+  },
+
+  slow(x) {
+    console.log('Called with ' + x);
+    return x * this.someMethod(); // (*)
+  }
+};
+const worker3 = {
+  name: 3,
+  someMethod() {
+    return 3;
+  },
+
+  slow(x) {
+    console.log('Called with ' + x);
+    return x * this.someMethod(); // (*)
+  }
+};
+
+
+function cachingDecorator2(func) {
+  const name = this;
+  const cache = new Map();
+  return function(x) {
+    if (cache.has(x)) {
+      return cache.get(x);
+    }
+    const test = this;
+    const result = func.call(this, x); // теперь 'this' передаётся правильно
+    cache.set(x, result);
+    return result;
+  };
+}
+
+console.log(worker2.slow);
+worker2.slow = cachingDecorator2(worker3.slow);
+
+console.log(worker2.slow(2));
+console.log(worker3.slow(1));
+console.log(worker2.slow);

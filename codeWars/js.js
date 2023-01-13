@@ -1141,3 +1141,22 @@ the words in the directory and just glue them together
 // }
 
 // console.log(solution('camelCasingTest'));
+
+
+
+function wave(str) {
+  const result = [];
+  for (const key in str) {
+    if (key === '0' && str[key] !== ' ')
+      result.push(str[key].toUpperCase() + str.slice(key + 1));
+    if (str[+key - 1] === undefined) {
+      continue;
+    }
+    if (str[key] === ' ') continue;
+    result.push(str.slice(0, key) + str[key].toUpperCase() +
+    str.slice(+key + 1));
+  }
+  return result;
+}
+
+console.log(wave(' gap '));
