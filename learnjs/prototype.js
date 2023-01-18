@@ -118,3 +118,40 @@ console.log(longEar.jumps); //true из rabbit
   // У этого хомяка тоже есть еда. Почему? Исправьте
   console.log(lazy.stomach); // apple
 }
+
+
+function Point(x, y) {
+  this.x = x;
+  this.y = y;
+  this.sayHi = function() {
+    console.log('Hello');
+  };
+}
+
+
+Point.prototype.move = function(x, y) {
+  this.x += x;
+  this.y += y;
+
+};
+
+
+const p1 = new Point(2, 3);
+
+p1.sayHi();
+
+
+
+class Samurai {
+  constructor(name) {
+    this.name = name;
+  }
+  hello() { alert(this.name); }
+}
+
+
+const shogun = new Samurai('Dimych');
+
+console.log(shogun.__proto__.__proto__ === Object.prototype);
+console.log(shogun.__proto__.constructor.__proto__ === Function.prototype);
+console.log(shogun.__proto__.__proto__.__proto__ === null);
