@@ -155,3 +155,56 @@ const shogun = new Samurai('Dimych');
 console.log(shogun.__proto__.__proto__ === Object.prototype);
 console.log(shogun.__proto__.constructor.__proto__ === Function.prototype);
 console.log(shogun.__proto__.__proto__.__proto__ === null);
+
+
+function f() {
+  console.log('Hello!');
+}
+function f2(a, b) {
+  console.log(a + b);
+}
+{
+  const obj = {};
+  console.log(obj);
+
+}
+f();
+Function.prototype.defer = function(ms) {
+  setTimeout(this, ms);
+};
+
+
+
+Function.prototype.decordefer = function(ms) {
+  const f = this;
+  return function(...args) {
+    setTimeout(() => f.apply(this, args), ms);
+  };
+};
+
+f2.decordefer(1000)(1, 2);
+
+
+{
+  const dictionary = Object.create(null, {
+    toString: {
+      value() {
+        return Object.keys(this).join();
+      }
+    }
+  });
+
+  // ваш код, который добавляет метод dictionary.toString
+  // добавляем немного данных
+  dictionary.apple = 'Apple';
+  dictionary.__proto__ = 'test'; // здесь __proto__ -- это обычный ключ
+
+  // только apple и __proto__ выведены в цикле
+  for (const key in dictionary) {
+    console.log(key); // "apple", затем "__proto__"
+  }
+
+  // ваш метод toString в действии
+  console.log(dictionary + ''); // "apple,__proto__"
+
+}
