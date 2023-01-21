@@ -365,7 +365,7 @@ Rabbit.prototype прототипно наследует от Animal.prototype *
 
   const rabbit = new Rabbit('Кроль');
 
-  console.log(rabbit.hasOwnProperty('name'));
+  //console.log(rabbit.hasOwnProperty('name'));
 
 
   /*Все равно есть отличия, если мы унаследовались от Object, то
@@ -470,19 +470,19 @@ Rabbit.prototype прототипно наследует от Animal.prototype *
   class CoffeeMachine {
     #waterLimit = 200;
     #waterNow;
-    constructor(value){
+    constructor(value) {
       this.#waterNow = this.#checkWater(value);
     }
-    waterNow(){
+    waterNow() {
       return this.#waterNow;
     }
     #checkWater(value) {
-      if (value < 0) throw new Error("Отрицательный уровень воды");
-      if (value > this.#waterLimit) throw new Error("Слишком много воды");
+      if (value < 0) throw new Error('Отрицательный уровень воды');
+      if (value > this.#waterLimit) throw new Error('Слишком много воды');
       return value;
     }
   }
-  
+
   //const coffeeMachine1 = new CoffeeMachine(-100); //Отрицательный уровень воды
   //const coffeeMachine2 = new CoffeeMachine(300);//Слишком много воды
   const coffeeMachine3 = new CoffeeMachine(150);//Все нормально
@@ -490,10 +490,10 @@ Rabbit.prototype прототипно наследует от Animal.prototype *
   //coffeeMachine.#checkWater();  //Ошибка
   //coffeeMachine.#waterLimit = 10000; //Ошибка
 
-  class MegaMachine extends CoffeeMachine{
-    getWaterNow(){
-        //return this.#waterNow; - так нельзя
-        return this.waterNow(); //Зато можно так
+  class MegaMachine extends CoffeeMachine {
+    getWaterNow() {
+      //return this.#waterNow; - так нельзя
+      return this.waterNow(); //Зато можно так
     }
   }
 
@@ -501,7 +501,10 @@ Rabbit.prototype прототипно наследует от Animal.prototype *
   console.log(test.getWaterNow()); //99
 }
 
-/*Защищённые поля имеют префикс _. Это хорошо известное соглашение, не поддерживаемое на уровне языка.
-Программисты должны обращаться к полю, начинающемуся с _, только из его класса и классов, унаследованных от него. */
+/*Защищённые поля имеют префикс _. Это хорошо известное
+соглашение, не поддерживаемое на уровне языка.
+Программисты должны обращаться к полю, начинающемуся
+с _, только из его класса и классов, унаследованных от него. */
 
-/*Приватные поля имеют префикс #. JavaScript гарантирует, что мы можем получить доступ к таким полям только внутри класса. */
+/*Приватные поля имеют префикс #. JavaScript гарантирует,
+ что мы можем получить доступ к таким полям только внутри класса. */
