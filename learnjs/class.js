@@ -241,9 +241,9 @@ function makeClass(phrase) {
 }
 
 {
-  const a = {
-    'name': 'Test'
-  };
+  // const a = {
+  //   'name': 'Test'
+  // };
 }
 
 //Статические методы
@@ -363,7 +363,7 @@ Rabbit.prototype прототипно наследует от Animal.prototype *
     }
   }
 
-  const rabbit = new Rabbit('Кроль');
+  //const rabbit = new Rabbit('Кроль');
 
   //console.log(rabbit.hasOwnProperty('name'));
 
