@@ -508,3 +508,117 @@ Rabbit.prototype прототипно наследует от Animal.prototype *
 
 /*Приватные поля имеют префикс #. JavaScript гарантирует,
  что мы можем получить доступ к таким полям только внутри класса. */
+
+
+
+
+{
+  const user = {
+    'login': '',
+    'password': '',
+    'validatePassword'() {
+      if (this.password.length > 6) return true;
+      return false;
+    }
+  };
+  user.password = 'Hello';
+  console.log(user.validatePassword());
+
+  const userProfile = {
+    'username': '',
+    'photo': '',
+    'age': 0,
+    __proto__: user,
+  };
+
+  userProfile.age = 25;
+  userProfile.username = 'Hellow';
+}
+
+
+//class -> function
+
+
+//Примеси
+{
+  const sayMixiy = {
+    say(phrase) {
+      console.log(phrase);
+    }
+  };
+  const sayHiMixin = {
+    say(phrase) {
+      super.say(phrase);
+    },
+    sayHi() {
+      super.say(`Привет, ${this.name}`);
+    },
+    sayBye() {
+      console.log(`Пока, ${this.name}`);
+    },
+    __proto__: sayMixiy,
+  };
+  class User {
+    constructor(name) {
+      this.name = name;
+    }
+  }
+
+  Object.assign(User.prototype, sayHiMixin);
+  new User('Данил').sayHi();
+  new User('Test').say('Это тест');
+}
+
+const eventMixin = {
+  on(eventName, handler) {
+    if (!this._eventHandlers) this._eventHandlers = {};
+    if (!this._eventHandlers[eventName]) {
+      this._eventHandlers[eventName] = [];
+    }
+    this._eventHandlers[eventName].push(handler);
+  },
+
+
+  off(eventName, handler) {
+    /*Тут
+вначале проверяется существование this._eventHandlers и если
+_eventHandlers есть в объекте, то переменной handlers присваивается
+значение this._eventHandlers[eventName]. Это сделано для того, чтобы
+избежать ошибки при обращении к несуществующему массиву. Почитайте в
+первой части учебника о том как работает оператор && (о коротком
+цикле вычисления). */
+    const handlers = this._eventHandlers && this._eventHandlers[eventName];
+    if (!handlers) return;
+    for (let i = 0; i < handlers.length; i++) {
+      if (handlers[i] === handler) {
+        handlers.splice(i--, 1);
+      }
+    }
+  },
+  trigger(eventName, ...args) {
+    if (!this._eventHandlers || !this._eventHandlers[eventName]) {
+      return; // обработчиков для этого события нет
+    }
+
+    // вызовем обработчики
+    this._eventHandlers[eventName]
+      .forEach(handler => handler.apply(this, args));
+  }
+
+};
+class Menu {
+  choose(value) {
+    this.trigger('select', value);
+  }
+}
+// Добавим примесь с методами для событий
+Object.assign(Menu.prototype, eventMixin);
+
+const menu = new Menu();
+
+// Добавить обработчик, который будет вызван при событии "select":
+menu.on('select', value => console.log(`Выбранное значение: ${value}`));
+
+// Генерирует событие => обработчик выше запускается и выводит:
+menu.choose('123'); // Выбранное значение: 123
+menu.off('select', value => console.log(`Выбранное значение: ${value}`));

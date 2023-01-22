@@ -42,3 +42,19 @@ console.log(bigInList(list1));
 
 
 
+//Бинарный поиск с использованием разделяй и влавствуй
+
+function binarySearch(list, item, low = 0, high = list.length - 1) {
+  let answer;
+  if (low > high) return false;
+  const mid = Math.floor((low + high) / 2);
+  const guess = list[mid];
+  if (guess === item) return mid;
+  if (guess > item)  answer = binarySearch(list, item, low, mid - 1);
+  else {
+    answer = binarySearch(list, item, mid + 1);
+  }
+  return answer;
+}
+
+console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9], 5));
