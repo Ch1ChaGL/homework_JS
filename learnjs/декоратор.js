@@ -22,7 +22,7 @@ Point.prototype.move = function(x, y, z) {
 Point.prototype.toString = function() {
   console.log(`x: ${this.x}  y: ${this.y} z: ${this.z} `);
 };
-const p2 = new Point(3, 4, 5);
+//const p2 = new Point(3, 4, 5);
 const p1 = new Point(2, 3, 4);
 
 function hash(...arr) {
