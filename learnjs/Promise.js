@@ -82,7 +82,7 @@ const p = new Promise((resolve, reject) =>  {
 p.then(data => new Promise((resolve, reject) => {
   setTimeout(() => {
     data.modified = true;
-    resolve(data);
+    reject(data);
   }, 2000);
 }))
   .then(clientData => {
@@ -126,23 +126,23 @@ p.then(data => new Promise((resolve, reject) => {
 
 
 
-{
-  const sleep = ms =>
-    new Promise(resolve => setTimeout(() => resolve(), ms));
+// {
+//   const sleep = ms =>
+//     new Promise(resolve => setTimeout(() => resolve(), ms));
 
-  sleep(2000).then(() => console.log('After 2 sec'));
-  sleep(3000).then(() => console.log('After 3 sec'));
-}
+//   sleep(2000).then(() => console.log('After 2 sec'));
+//   sleep(3000).then(() => console.log('After 3 sec'));
+// }
 
 
-const p2 = new Promise((resolve, reject) => {
-  setTimeout(() => console.log('Test100'), 2000);
-  resolve(true);
-});
+// const p2 = new Promise((resolve, reject) => {
+//   setTimeout(() => console.log('Test100'), 2000);
+//   resolve(true);
+// });
 
-p2.then(data => {
-  console.log(data);
-});
+// p2.then(data => {
+//   console.log(data);
+// });
 
 
 
