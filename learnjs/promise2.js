@@ -31,3 +31,29 @@ Promise.race([sleep(2000), sleep(5000)])
   .then(() => {
     console.log('Race promises');
   });
+
+{
+  const promise = new Promise((resolve, reject) => {
+    const obj = {
+      name: 'Danil',
+      lastName: 'Markov',
+      //age: 18,
+    };
+    if ('age' in obj)
+      setTimeout(() => resolve(obj), 2000);
+    if (!('age' in obj))
+      setTimeout(() => reject(new Error('TestError')), 2000);
+  });
+
+  promise
+    .then(
+      result => {
+        console.log('Все выполнено успешно');
+        console.dir(result);
+      },
+      err => {
+        console.log('Ошибка', err);
+      }
+    );
+
+}
