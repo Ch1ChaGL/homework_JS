@@ -2,7 +2,7 @@
 
 
 
-new Promise((resolve, reject) => {
+new Promise(resolve => {
   setTimeout(() => resolve('value'), 2000);
 })
   .finally(() => new Error()) // срабатывает первым
@@ -10,7 +10,7 @@ new Promise((resolve, reject) => {
 
 
 
-const fn = (ms, callback, ...args) => new Promise((resolve, reject) => {
+const fn = (ms, callback, ...args) => new Promise(resolve => {
   setTimeout(() => {
     resolve(callback(...args));
   }, ms, ...args);

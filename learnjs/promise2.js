@@ -2,7 +2,7 @@
 
 
 
-const p2 = new Promise((resolve, reject) => {
+const p2 = new Promise(resolve => {
   setTimeout(() => {
     console.log('Test100');
     resolve(true);

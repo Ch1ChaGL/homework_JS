@@ -9,7 +9,7 @@ try {
     throw new SyntaxError('Данные неполны: нет имени');
   }
 
-  blabla(); // неожиданная ошибка
+  //blabla(); // неожиданная ошибка
 
   alert(user.name);
 

@@ -66,7 +66,7 @@ console.log('Request data...');
 
 
 
-const p = new Promise((resolve, reject) =>  {
+const p = new Promise(resolve =>  {
   setTimeout(() => {
     console.log('Preparinf data...');
     const backendData = {
@@ -92,7 +92,7 @@ p.then(data => new Promise((resolve, reject) => {
   })
   .then(data => {
     console.log('Modified', data);
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       setTimeout(() => {
         const text = 'testText';
         console.log('test');
