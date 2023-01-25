@@ -1144,19 +1144,176 @@ the words in the directory and just glue them together
 
 
 
-function wave(str) {
-  const result = [];
-  for (const key in str) {
-    if (key === '0' && str[key] !== ' ')
-      result.push(str[key].toUpperCase() + str.slice(key + 1));
-    if (str[+key - 1] === undefined) {
+// function wave(str) {
+//   const result = [];
+//   for (const key in str) {
+//     if (key === '0' && str[key] !== ' ')
+//       result.push(str[key].toUpperCase() + str.slice(key + 1));
+//     if (str[+key - 1] === undefined) {
+//       continue;
+//     }
+//     if (str[key] === ' ') continue;
+//     result.push(str.slice(0, key) + str[key].toUpperCase() +
+//     str.slice(+key + 1));
+//   }
+//   return result;
+// }
+
+// console.log(wave(' gap '));
+
+
+// function sumIntervals(intervals) {
+//   const arrSum = [];
+//   let sum;
+//   intervals.sort((a, b) => a[0] - b[0]);
+//   const start = intervals[0][0];
+//   let end = intervals[0][1];
+//   for (let i = 0; i < intervals.length; i++) {
+//     if (intervals[i][0] >= start && intervals[i][1] >= end &&
+//       intervals[i][0] <= end) {
+//       end = intervals[i][1];
+//       if (i === intervals.length - 1) {
+//         sum = end - start;
+//         arrSum.push(sum);
+//       }
+//       continue;
+//     }
+//     if (intervals[i][0] >= start && intervals[i][1] <= end)
+//       continue;
+//     else {
+//       sum = end - start;
+//       arrSum.push(sum);
+//       if (i === intervals.length - 1) {
+//         arrSum.push(intervals[i][1] - intervals[i][0]);
+//       }
+//     }
+
+//   }
+//   return arrSum.reduce((prev, cur) => prev + cur);
+
+// }
+
+// console.log(sumIntervals([[1, 10], [11, 13], [12, 14]]));//12
+// console.log(sumIntervals([[1, 3], [2, 4], [10, 15]])); //8
+// console.log(sumIntervals([[1, 3], [2, 4], [10, 15], [16, 18], [17, 19]])); //11
+// console.log(sumIntervals([ [ 1, 5 ], [ 1, 5 ]])); //4
+// console.log(sumIntervals([ [ 1, 5 ], [ 5, 10 ]])); //9
+// console.log(sumIntervals([ [ 1, 4 ], [ 7, 10 ], [ 3, 5 ]])); //7
+// console.log(sumIntervals([ [ 1, 4 ], [ 3, 6 ], [ 5, 8 ],
+//   [ 7, 10 ], [ 9, 12 ]])); //11
+// console.log(sumIntervals([ [ 1, 20 ], [ 2, 19 ], [ 5, 15 ], [ 8, 12 ]])); //true
+// console.log(sumIntervals([ [ 1, 5 ], [ 10, 20 ], [ 1, 6 ],
+//   [ 16, 19 ], [ 5, 11 ]]));
+// console.log(sumIntervals([ [ 1, 5 ]]));
+// console.log(sumIntervals([[ 13, 18 ], [ 19, 20 ], [ -16, -11 ], [ -17, -9 ] ]));
+// console.log(sumIntervals([[ 16, 20 ],   [ 7, 10 ],
+//   [ -13, -9 ],  [ 16, 17 ],
+//   [ 6, 11 ],    [ 11, 13 ],
+//   [ -19, -15 ], [ -20, -19 ],
+//   [ -14, -13 ], [ 8, 9 ]]));
+
+
+console.log(sumIntervals([
+  [ 1, 5 ], [ 5, 10 ]]));
+
+
+
+
+
+
+function sumIntervals(intervals) {
+  console.log(intervals);
+  if (intervals.length === 1) {
+    if (intervals[0][1] > 0)
+      return Math.abs(intervals[0][1] - intervals[0][0]);
+    return Math.abs(Math.abs(intervals[0][1]) - Math.abs(intervals[0][0]));
+  }
+  let sum;
+  intervals.sort((a, b) => a[0] - b[0]);
+  const start = intervals[0][0];
+  let end = intervals[0][1];
+  for (let i = 1; i < intervals.length; i++) {
+    if (intervals[i][0] >= start && intervals[i][1] >= end &&
+      intervals[i][0] <= end) {
+      end = intervals[i][1];
+      // if (i === intervals.length - 1) {
+      //   sum =  Math.abs(Math.abs(end) - Math.abs(start));
+      //   return sumIntervals(intervals.slice(i));
+      // }
       continue;
     }
-    if (str[key] === ' ') continue;
-    result.push(str.slice(0, key) + str[key].toUpperCase() +
-    str.slice(+key + 1));
+    if (intervals[i][0] >= start && intervals[i][1] <= end) {
+      continue;
+    } else {
+      if (intervals[i][1] > 0)
+        sum =  Math.abs(end - start);
+      else
+        sum =  Math.abs(Math.abs(end) - Math.abs(start));
+      intervals = intervals.slice(i);
+      break;
+    }
+
   }
-  return result;
+  return sum + sumIntervals(intervals);
+
 }
 
-console.log(wave(' gap '));
+
+// function sumIntervals(intervals) {
+//   console.dir(intervals);
+//   if (intervals.length === 1) {
+//     return Math.abs(intervals[0][1] - intervals[0][0]);
+//   }
+//   let sum = 0;
+//   intervals.sort((a, b) => (a[0] - b[0]));
+//   let start = intervals[0][0];
+//   let end = intervals[0][1];
+//   for (let i = 0; i < intervals.length; i++) {
+
+
+//     const overlapsTheSegment = intervals[i][0] >= start &&
+//     intervals[i][0] <= end &&
+//     intervals[i][1] > end;
+//     const insideTheSegment = intervals[i][0] >= start &&
+//     intervals[i][0] <= end && !overlapsTheSegment;
+
+//     if (insideTheSegment) continue;
+//     if (overlapsTheSegment) {
+//       end = intervals[i][1];
+//       if (i === intervals.length - 1) {
+//         sum += Math.abs(Math.abs(Math.abs(end) - Math.abs(start)));
+//       }
+//       continue;
+//     }
+//     if (insideTheSegment && !overlapsTheSegment)
+//       sum += Math.abs(Math.abs(Math.abs(end) - Math.abs(start)));
+//     else {
+//       sum += Math.abs((Math.abs(end) -
+//       Math.abs(start)));
+//       start = intervals[i][0];
+//       end = intervals[i][1];
+//       if ((i === intervals.length - 1)) {
+//         sum += Math.abs((Math.abs(intervals[i][1]) -
+//         Math.abs(intervals[i][0])));
+//       }
+//     }
+
+//   }
+//   return sum ? sum : Math.abs(Math.abs(end) - Math.abs(start));
+
+// }
+
+
+
+
+
+function sumIntervals(intervals) {
+  let arr = [];
+  intervals.forEach(element => {
+    for (let i = element[0]; i < element[1]; i++) {
+      arr.push(i);
+    }
+  });
+  arr = [...new Set(arr)];
+  return arr.length;
+}
