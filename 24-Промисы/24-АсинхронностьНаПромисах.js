@@ -128,3 +128,17 @@ MyAc(user)
     document.body.append(img);
     setTimeout(() => img.remove(), 3000);
   });
+
+
+const arr = ['danil', 'danil2'];
+
+arr.forEach((el, i, arr2) =>
+  arr2[i] = 'test'
+);
+
+console.log(arr);
+for (let i = 0, j = 500; i < 3; i++, j -= 100) {
+  setTimeout(() => console.log(i), i + (1000 + j));
+}
+
+
