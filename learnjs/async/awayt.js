@@ -86,3 +86,11 @@ async function go() {
 }
 
 go().then(() => console.log('Конец'));
+
+
+
+{
+  
+
+
+}
