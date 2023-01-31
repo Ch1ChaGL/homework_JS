@@ -13,7 +13,7 @@
 
 // // const fs = require('fs');
 // // const { resolve } = require('path');
-// // const readFile = promisify(fs.readFile);
+// const readFile = promisify(fs.readFile);
 
 
 // // readFile('text1.txt', 'utf8')
@@ -142,3 +142,74 @@ for (let i = 0, j = 500; i < 3; i++, j -= 100) {
 }
 
 
+
+
+
+const fs = require('fs');
+
+
+// fs.readFile('text11.txt', 'utf-8', (err, data) => {
+//   if (err) throw new Error();
+//   console.log(data);
+// });
+
+// console.log(fs.readFileSync('text11.txt', 'utf-8'));
+// for (let i = 0; i < 1000; i++) {
+//   console.log(i);
+// }
+
+// fs.readFile('text11.txt', 'utf-8', (err, data) => {
+//   if (err) throw new Error();
+//   console.log(data);
+//   fs.readFile('text1.txt', 'utf-8', (err, data) => {
+//     if (err) throw new Error();
+//     console.log(data);
+//     fs.readFile('text2.txt', 'utf-8', (err, data) => {
+//       if (err) throw new Error();
+//       console.log(data);
+//     });
+//   });
+// });
+
+
+// const readFile = (path, encoding) => new Promise((resolve, reject) => {
+//   fs.readFile(path, encoding, (err, data) => {
+//     if (err) throw reject(err);
+//     resolve(data);
+//   });
+// });
+
+
+// readFile('text2.txt', 'utf-8')
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err));
+
+
+{
+  const promisify = fn => (...args) => new Promise((resolve, reject) => {
+    args.push((err, data) => {
+      if (err) reject(err);
+      resolve(data);
+    });
+    fn(...args);
+  });
+
+  const readFilePromisify = promisify(fs.readFile);
+
+  readFilePromisify('text2.txt', 'utf-8')
+    .then(
+      data => {
+        console.log(data);
+        return readFilePromisify('text11.txt', 'utf-8');
+      }
+    )
+    .then(
+      data => {
+        console.log(data);
+        return readFilePromisify('test.txt', 'utf-8');
+      }
+    )
+    .then(data => console.log(data)) // Не достежимый код
+    .catch(err => console.log(err))
+    .then(() => console.log('Что-то после кэтча'));
+}
