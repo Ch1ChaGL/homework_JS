@@ -200,3 +200,91 @@ const delay = ms => new Promise(r => setTimeout(() => r(), ms));
     .then(data => console.log(data));
 
 }
+
+
+
+// async function f() {
+//   const result = await new Promise((resolve, reject) => {
+//     setTimeout(() => resolve('готово!'), 1000);
+//   });
+//   console.log(result);
+// }
+
+// f();
+
+
+
+
+async function GetUserGit(username) {
+  console.log('Начало');
+
+  const response = await fetch(`https://api.github.com/users/${username}`);
+  const GitUser = await response.json();
+  for (const key in GitUser) {
+    console.log(GitUser[key]);
+  }
+
+  return 'Конец';
+}
+
+GetUserGit('Ch1ChaGl')
+  .then(data => console.log(data));
+
+
+
+class Thenable {
+  constructor(num) {
+    this._num = num;
+  }
+
+  then(resolve, reject) {
+    alert(resolve);
+    setTimeout(() => resolve(this._num * 2), 1000);
+  }
+
+
+
+
+}
+
+async function f() {
+  const result = await new Thenable(1);
+  alert(result);
+}
+
+f();
+/*Когда await получает объект с .then, не являющийся промисом, JavaScript
+автоматически запускает этот метод, передавая ему аргументы
+– встроенные функции resolve и reject.
+Затем await приостановит дальнейшее выполнение кода,
+пока любая из этих функций не будет вызвана
+(в примере это строка (*)). После чего выполнение кода
+продолжится с результатом resolve или reject соответственно. */
+
+
+
+
+//Асинхронный метод класса
+
+class Waiter {
+  async wait(num) {
+    return await new Promise((resolve, reject) => {
+      setTimeout(num => resolve(num), num * 1000, num);
+    });
+  }
+}
+
+new Waiter().wait(3).then(sec => console.log(sec));
+
+
+
+async function rejectNow(num) {
+  try {
+    const result = await fetch('http://no-such-url');
+  } catch {
+    alert(`Ошибка ${num}`);
+  }
+}
+
+
+alert(rejectNow(404));
