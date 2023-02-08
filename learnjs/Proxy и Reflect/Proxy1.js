@@ -242,3 +242,50 @@ console.log(sayHi.length);
   const name = user.name;
   user.name = 'Danil Markov';
 }
+
+
+
+{
+
+
+  const user = {
+    _name: 'Гость',
+    get name() {
+      return this._name;
+    }
+  };
+  const ProxyUser = new Proxy(user, {
+    get(target, property, receiver) {
+      return Reflect.get(target, property, receiver);
+    }
+  });
+
+  console.log(ProxyUser.name);
+
+
+  const admin = {
+    _name: 'Admin',
+    __proto__: ProxyUser,
+
+  };
+
+  console.log(admin.name);
+}
+
+
+{
+  const map = new Map();
+
+  const proxy = new Proxy(map, {
+    get(target, prop, receiver) {
+      const value = Reflect.get(...arguments);
+      return typeof value === 'function' ? value.bind(target) : value;
+    },
+  });
+
+  console.log(proxy.set('test', 1));
+  console.log(proxy.get('test'));
+}
+
+
+
