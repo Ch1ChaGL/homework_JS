@@ -26,7 +26,8 @@
 // alert(testHtml.parentElement?.nodeName);
 
 
-alert(document.querySelector('div').innerHTML);
-alert(document.querySelector('ul').innerHTML);
-alert(document.querySelector('ul').lastElementChild.textContent);
+// alert(document.querySelector('div').innerHTML);
+// alert(document.querySelector('ul').innerHTML);
+// alert(document.querySelector('ul').lastElementChild.textContent);
 
+alert(document.head.nextSibling.nodeType === document.TEXT_NODE);

@@ -23,6 +23,62 @@
 
     <a href="http://example.com/file.zip">...</a>
     <a href="http://ya.ru">...</a>
+    
+
+
+    <h1>Содержание</h1>
+
+    <div class="content">
+        <ul class="book">
+            <li class="chapter">Глава 1</li>
+            <li class="chapter">Глава 2</li>
+            <li class="chapter">Глава 3</li>
+        </ul>
+    </div>
+
+
+
+
+    <table id="table">
+        <tr>
+          <td>Ваш возраст:</td>
+      
+          <td>
+            <label>
+              <input type="radio" name="age" checked value="young" class="test"> младше 18
+            </label>
+            <label>
+              <input type="radio" name="age" value="mature"> от 18 до 50
+            </label>
+            <label>
+              <input type="radio" name="age" value="senior"> старше 60
+            </label>
+          </td>
+        </tr>
+      </table>
+
+    <script>
+        let countDivQuery = document.querySelectorAll('div');
+        const countDivByTeg = document.getElementsByTagName('div');
+        alert(countDivQuery.length+'query');
+        alert(countDivByTeg.length + 'teg');
+    </script>
+
+      <form name="my-form">
+        <div class="article">Article</div>
+        <div class="long article">Long article</div>
+      </form>
+    
+    <div>Text</div>
+    <script>
+        countDivQuery = document.querySelectorAll('div');
+        alert(countDivQuery.length+'query');
+        alert(countDivByTeg.length + 'teg');
+    </script>
+
+    <div id="elemA">
+        <div id="elemB"></div>
+    </div>
 
     <script src="main.js"></script>
 </body>
