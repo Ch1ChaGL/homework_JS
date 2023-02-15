@@ -1,49 +1,26 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
 <body>
+    <div class="none-type-atribute" whatisatribute="123">123</div>
+    <input type="text" value="text">
+    <div show-info="name"></div>
+    <div show-info="age"></div>
 
-  <ul>
-    <li>Животные
-      <ul>
-        <li>Млекопитающие
-          <ul>
-            <li>Коровы</li>
-            <li>Ослы</li>
-            <li>Собаки</li>
-            <li>Тигры</li>
-          </ul>
-        </li>
-        <li>Другие
-          <ul>
-            <li>Змеи</li>
-            <li>Птицы</li>
-            <li>Ящерицы</li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-    <li>Рыбы
-      <ul>
-        <li>Аквариумные
-          <ul>
-            <li>Гуппи</li>
-            <li>Рыба-ангел</li>
-          </ul>
-        </li>
-        <li>Морские
-          <ul>
-            <li>Морская форель</li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
+    <div data-widget-name="menu">Choose the genre</div>
 
-  <script>
-    for (let li of document.querySelectorAll('li')) {
-        console.log(li.firstChild.textContent);
-    }
-  </script>
+  <li><a href="http://google.com">http://google.com</a></li>
+  <li><a href="/tutorial">/tutorial.html</a></li>
+  <li><a href="local/path">local/path</a></li>
+  <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+  <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+  <li><a href="http://internal.com/test">http://internal.com/test</a></li>
 
+    <script src="main.js"></script>
 </body>
 </html>
