@@ -195,7 +195,18 @@ function createTree(container, data) {
     ul.append(li);
     if (typeof data[key] === 'object' && Object.values(data[key]).length > 0) {
       createTree(li, data[key]);
+      const  countChild = li.getElementsByTagName('li').length;
+      if (countChild > 0)
+        li.firstChild.textContent += `[${countChild}]`;
     }
   }
 }
+
+
 createTree(container, data);
+
+
+const ul2 = document.querySelector('.ul2');
+
+
+ul2.children[0].insertAdjacentHTML('afterend', '<li>2</li><li>3</li>');
