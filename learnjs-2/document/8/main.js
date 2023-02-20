@@ -42,3 +42,5 @@ showNotification({
   html: 'Hello!', // HTML-уведомление
   className: 'welcome' // дополнительный класс для div (необязательно)
 }).then(elem => elem.remove());
+
+
