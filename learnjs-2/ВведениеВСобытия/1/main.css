@@ -1,0 +1,11 @@
+.but:hover{
+    cursor: pointer;
+}
+.but{
+    cursor: pointer;
+    display: inline-block;
+}
+.btn{
+    display: block;
+    max-width: 150px;
+}
