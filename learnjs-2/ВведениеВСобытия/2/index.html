@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div onclick="alert('Обработчик!')">
+        <em>Если вы кликните на <code>EM</code>, сработает обработчик на <code>DIV</code></em>
+    </div>
+
+    <form class="form" onclick="alert('form')"> FORM
+        <div onclick="alert('div')"> DIV
+            <p onclick="alert('p')">P</p> <!--Туда куда тыкнем, тот ивент выполнится первым и вызовет подобный ивент у родителя-->
+        </div>
+    </form>
+
+    <div class="test">
+        <button>Кликните меня</button>
+    </div>
+
+
+    <div class="test2">
+        <form>Form
+            <div>DIV
+                <p>P</p>
+            </div>
+        </form>
+    </div>
+
+
+    Счетчик: <input type="button" value="1" data-counter>
+    Еще счетчик: <input type="button" value="2" data-counter>
+
+
+    <button data-toggle-id="subscribe-mail">
+        Показать форму подписки
+    </button>
+      
+    <form id="subscribe-mail" hidden>
+        Ваша почта: <input type="email">
+    </form>
+
+    <script src="main.js"></script>
+</body>
+</html>
