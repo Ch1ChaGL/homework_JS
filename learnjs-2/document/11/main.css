@@ -1,0 +1,13 @@
+.test1{
+    position: relative;
+    top: 48vh;
+    left: 45vw;
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+}
+
+.mes{
+    position: fixed;
+    color: red;
+}
