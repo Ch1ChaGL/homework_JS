@@ -26,18 +26,19 @@ form.addEventListener('click', clickOnForm);
 
 
 const btn = document.querySelector('.class-button');
+const testElem = document.querySelector('.test');
 
 function oncontextmenuBtn(event) {
-  //event.preventDefault(); //Останавливаем стандартный обработчик браузера
-  alert('Контекстное меню кнопки');
+  event.preventDefault(); //Останавливаем стандартный обработчик браузера
+  alert('Контекстное меню p');
 }
 
 function oncontextmenuDocument(event) {
   //Если при всплытие уже был остановлен стандартный обработчик, то ретурн
-  //if (!event.defaultPrevented) { event.preventDefault(); return; }
+  //if (event.defaultPrevented) { /*event.preventDefault();*/ return; }
   //event.preventDefault();
-  alert('Контекстное меню документа');
+  alert('Контекстное меню testElem');
 }
 
-document.addEventListener('contextmenu', oncontextmenuDocument);
-btn.addEventListener('contextmenu', oncontextmenuBtn);
+testElem.addEventListener('contextmenu', oncontextmenuDocument);
+p.addEventListener('contextmenu', oncontextmenuBtn);

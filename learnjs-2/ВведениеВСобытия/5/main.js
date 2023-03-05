@@ -22,7 +22,7 @@ const event1 = new Event('click');
 const h1 = document.querySelector('#h1');
 
 h1.addEventListener('hello', event => {
-  alert('Привет из кода' + event.target.tagName);
+  console.log('Привет из кода' + event.target.tagName);
 });
 
 
@@ -37,11 +37,35 @@ const event3 = new MouseEvent('contextmenu', {
 
 document.addEventListener('contextmenu', event => {
   event.preventDefault();
-  alert(`Контекстное меню вызвано на координатах x: ${event.clientX} y: ${event.clientY}`);
+  console.log(`Контекстное меню вызвано на координатах x: ${event.clientX} y: ${event.clientY}`);
 });
 
 document.dispatchEvent(event3);
 
+
+
+
+
+
+const myEvent = new CustomEvent('OMG', { bubbles: true,
+  cancelable: true, detail: { name: 'Ch1Cha_Gl' } });
+
+
+const divTest = document.querySelector('.test');
+
+divTest.addEventListener('OMG', event => {
+  event.preventDefault();
+  console.log(`event type: ${event.type} event.target: ${event.target} event.currentTarget: ${event.currentTarget}\n
+  event.detail.name: ${event.detail.name}`);
+  const elem = event.target;
+  elem.style.backgroundColor = 'red';
+  return 'Hello world';
+});
+
+setTimeout(() => {
+  const value = divTest.dispatchEvent(myEvent);
+  alert(value);
+}, 0);
 
 
 
