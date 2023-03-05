@@ -1,11 +1,8 @@
 'use strict';
 
 
-const { rejects } = require('assert');
-const { resolve } = require('path');
+
 const readline = require('readline');
-
-
 
 
 
@@ -29,14 +26,35 @@ async function readLine(question) {
   return answer;
 }
 
-async function calc() {
-  const a = await readLine('Введите значение а');
-  const b = await readLine('Введите значение b');
-  return parseInt(a) + parseInt(b);
+function allContains(subString) {
+  return subString.includes('a') &&
+  subString.includes('b') && subString.includes('c') && subString.includes('d');
+}
+
+async function main() {
+  const stringLength = parseInt(await readLine('Введите длинну строки: '));
+  const isString = await readLine('Введите строку: ');
+
+  if (allContains(isString)) {
+    let minLength = stringLength;
+    for (let i = 0; i < stringLength; i++) {
+      for (let j = 0; j < stringLength - i; j++) {
+
+        const subStr = isString.substring(i, j);
+
+        if (allContains(subStr)) {
+          minLength = Math.min(minLength, subStr.length);
+        }
+
+      }
+    }
+    return minLength;
+  }
+  return -1;
 }
 
 
-calc().then(data => { console.log(data); rl.close(); });
+main().then(data => { console.log(data); rl.close(); });
 
 
 
