@@ -53,10 +53,38 @@ const input1 = document.querySelector('.input1');
 const test = document.querySelector('.test');
 
 
+// input1.addEventListener('mousemove', event => {
+//   const box = test.getBoundingClientRect();
+//   const x = event.clientX - box.left;
+//   const y = event.clientY - box.top;
+//   event.currentTarget.value = `${x} : ${y}`;
+// });
+
+
 input1.addEventListener('mousemove', event => {
-  const box = test.getBoundingClientRect();
-  const x = event.clientX - box.left;
-  const y = event.clientY - box.top;
-  event.currentTarget.value = `${x} : ${y}`;
+  event.currentTarget.value = `client: ${event.clientX} : ${event.clientY}\n
+  Page: ${event.pageX} : ${event.pageY}`;
 });
 
+
+const test2 = document.querySelector('.test2');
+
+
+test2.addEventListener('dblclick', event => {
+  alert('Произошел двойной клик');
+});
+
+test2.addEventListener('mousedown', event => {
+  event.preventDefault();
+  window.getSelection().removeAllRanges();
+});
+
+const noCopy = document.querySelector('.no-copy');
+
+
+document.addEventListener('copy', event => {
+  const selectText = window.getSelection().toString();
+  const myText = `${selectText} вы скопировали мой текст атата!`;
+  event.preventDefault();
+  event.clipboardData.setData('text/plain', myText);
+});
