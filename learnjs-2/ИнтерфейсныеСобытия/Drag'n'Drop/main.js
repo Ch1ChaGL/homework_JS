@@ -26,7 +26,7 @@ ball.onmousedown  =  event => {
   ball.style.position = 'absolute';
   ball.style.zIndex = 1000;
 
-  container.append(ball);
+  //container.append(ball);
 
   function moveAt(pageX, pageY) {
 
@@ -47,7 +47,7 @@ ball.onmousedown  =  event => {
       ball.onmouseup = null;
     }
   }
-  moveAt(event.pageX, event.pageY);
+  //moveAt(event.pageX, event.pageY);
 
 
   function onMoseMove(event) {
