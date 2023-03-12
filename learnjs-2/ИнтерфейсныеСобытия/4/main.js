@@ -78,3 +78,29 @@ keydown срабатывает снова и снова, и когда клав�
 
 Для событий, вызванных автоповтором,
 у объекта события свойство event.repeat равно true. */
+
+function runOnKeys(fn, ...codes) {
+
+  const pressed = new Set();
+
+  document.addEventListener('keydown', event => {
+
+    pressed.add(event.code);
+    for (const code of codes) {
+      if (!pressed.has(code)) return;
+    }
+
+    pressed.clear();
+    fn();
+  });
+
+  document.addEventListener('keyup', event => {
+    pressed.delete(event.code);
+  });
+
+}
+
+
+runOnKeys(() => {
+  alert('Нажаты две клавиши');
+}, 'KeyQ', 'KeyW');
