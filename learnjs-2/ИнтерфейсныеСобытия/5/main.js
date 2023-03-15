@@ -49,3 +49,52 @@ setTimeout(() => btn1.dispatchEvent(pressureEvent), 3000);
 
 //Бля не работал учебник, но я немного теории посмотрел на ютубе(,
 //но я вообще ничего сегодня не сделал,это печально
+
+
+
+const slider = document.querySelector('.slider');
+const thumb = document.querySelector('.thumb');
+
+thumb.ondragstart = function() {
+  return false;
+};
+
+thumb.addEventListener('pointerdown', event => {
+  event.preventDefault();
+
+  const shiftX = event.clientX - thumb.getBoundingClientRect().left;
+  thumb.setPointerCapture(event.pointerId);
+
+  function onMouseMove(event) {
+
+
+    let newLeft = event.clientX - shiftX -
+    slider.getBoundingClientRect().left;
+
+    if (newLeft < 0) {
+      newLeft = 0;
+    }
+
+    const rightEdge = slider.offsetWidth - thumb.offsetWidth;
+
+    if (newLeft > rightEdge) {
+      newLeft = rightEdge;
+    }
+    thumb.style.left = newLeft + 'px';
+  }
+
+  function onMouseUp() {
+    thumb.removeEventListener('pointermove', onMouseMove);
+    thumb.removeEventListener('pointerup', onMouseUp);
+  }
+
+
+  thumb.addEventListener('pointermove', onMouseMove);
+  thumb.addEventListener('pointerup', onMouseUp);
+  thumb.addEventListener('lostpointercapture', () => {
+    thumb.removeEventListener('pointermove', onMouseMove);
+    thumb.removeEventListener('pointerup', onMouseUp);
+  });
+
+
+});
