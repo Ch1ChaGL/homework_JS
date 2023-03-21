@@ -120,3 +120,12 @@ class onlyAdmin implements IAdmin {
 const admin = new onlyAdmin('Danil', 18);
 
 admin.sayHi();
+
+
+class Test implements Imap {
+    constructor(
+        public name: string,
+    ){}
+}
+
+
