@@ -1,0 +1,53 @@
+.invalid {
+  border-color: red;
+}
+#error {
+  color: red;
+}
+
+.error {
+  background-color: red;
+}
+
+li:focus {
+  outline: 1px dashed grey;
+}
+
+
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+#form1 {
+  margin-top: 30px;
+  width: 300px;
+  height: 300px;
+  border: 1px rgb(39, 37, 37) solid;
+  border-radius: 5px;
+  box-shadow: 10px 5px 5px black;
+}
+
+#form1.focused {
+    background-color: red;
+    box-shadow: 10px 5px 5px red;
+  }
+
+
+
+  #form2 {
+    margin-top: 30px;
+    width: 300px;
+    height: 300px;
+    border: 1px rgb(61, 211, 126) solid;
+    border-radius: 5px;
+    box-shadow: 10px 5px 5px green;
+  }
+  
+  #form2.focused {
+      background-color: rgb(89, 199, 239);
+      box-shadow: 10px 5px 5px rgb(91, 201, 241);
+    }
+  
+    
