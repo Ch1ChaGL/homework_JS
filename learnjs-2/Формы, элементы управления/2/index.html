@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
     <title>Document</title>
-</head>
-<body>
-    
+  </head>
+  <body>
+    <div class="btn">кнопка</div>
 
-    <script src="main.css"></script>
-</body>
+    <ul>
+      <li tabindex="1">Один</li>
+      <li tabindex="0">Ноль</li>
+      <li tabindex="2">Два</li>
+      <li tabindex="3">Три</li>
+    </ul>
+
+    <label for="#input"> Ваш email: </label>
+    <input type="email" name="" id="input" />
+    <input
+      type="text"
+      style="width: 280px"
+      placeholder="введите неверный email и кликните сюда"
+    />
+    <div id="error"></div>
+
+    <div class="container">
+      <form action="" id="form1">
+        <input type="text" name="name" value="Имя" />
+        <input type="text" name="lastname" value="Фамилия" />
+      </form>
+    </div>
+
+    <div class="container">
+      <form action="" id="form2">
+        <input type="text" name="name" value="Имя" />
+        <input type="text" name="lastname" value="Фамилия" />
+      </form>
+    </div>
+    <script src="main.js"></script>
+  </body>
 </html>
