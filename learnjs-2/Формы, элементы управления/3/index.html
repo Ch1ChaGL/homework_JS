@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <select name="" id="select">
+      <option selected value="">Выберите значение</option>
+      <option value="1">Вариант 1</option>
+      <option value="2">Вариант 2</option>
+      <option value="3">Вариант 3</option>
+    </select>
+
+    <div class="beer__radioInput">
+      <input type="radio" value="light" name="beer" /> светлое
+      <input type="radio" value="dark" name="beer" /> темное
+      <input type="radio" value="another" name="beer" /> другое
+    </div>
+
+    <input type="text" id="inputEvent" /> oninput: <span id="result"></span>
+    <br />
+    <input type="text" name="" id="cutCopyPaste" />
+
+    <br /><br /><br /><br /><br />
+    <form name="calculator">
+      <div>Депозитный калькулятор</div>
+      Первоначальный депозит
+      <input type="number" name="money" id="money" value="10000"/><br />
+      Срок вклада
+      <select name="long">
+        <option value="0">Выберите срок</option>
+        <option value="3">3 (минимум)</option>
+        <option selected value="6">6 (полгода)</option>
+        <option value="12" selected>12 (год)</option>
+        <option value="18">18 (1.5 года)</option>
+        <option value="24">24 (2 года)</option>
+        <option value="30">30 (2.5 года)</option>
+        <option value="36">36 (3 года)</option>
+        <option value="60">60 (5 лет)</option>
+      </select>
+      <br />
+      Годовая процентная ставка ?
+      <input type="number" name="procent" id="procent" value="5"/><br />
+
+      <div class="container">
+        <div class="block">
+          <div class="row">
+            <div class="red">
+              <div class="red__row">
+                <div class="text">Было</div>
+                <div class="num__before">1000</div>
+                <div class="diagram__before"></div>
+              </div>
+            </div>
+            <div class="green">
+              <div class="green__row">
+                <div class="text">Стало</div>
+                <div class="num__after">1000</div>
+                <div class="diagram__after"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <script src="main.js"></script>
+  </body>
+</html>
