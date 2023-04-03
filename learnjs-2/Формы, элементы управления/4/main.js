@@ -86,3 +86,6 @@ document.getElementById('show-button').onclick = () => {
     alert('Вы ввели: ' + value);
   });
 };
+
+const test = document.getElementById('test');
+
