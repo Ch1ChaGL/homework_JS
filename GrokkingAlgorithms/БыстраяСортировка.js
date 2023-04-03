@@ -9,8 +9,6 @@ const sum = (...args) => {
 
 console.log(sum(2, 3, 4));
 
-
-
 //Напишите рекурсивную функцию для подсчета элементов в списке
 const list1 = {
   value: 100,
@@ -26,10 +24,7 @@ const countElementOnList = list => {
   return 1 + countElementOnList(list.next);
 };
 
-
 console.log(countElementOnList(list1));
-
-
 
 //Найдите наибольший элемент в списке
 const bigInList = list => {
@@ -40,8 +35,6 @@ const bigInList = list => {
 
 console.log(bigInList(list1));
 
-
-
 //Бинарный поиск с использованием разделяй и влавствуй
 
 function binarySearch(list, item, low = 0, high = list.length - 1) {
@@ -50,7 +43,7 @@ function binarySearch(list, item, low = 0, high = list.length - 1) {
   const mid = Math.floor((low + high) / 2);
   const guess = list[mid];
   if (guess === item) return mid;
-  if (guess > item)  answer = binarySearch(list, item, low, mid - 1);
+  if (guess > item) answer = binarySearch(list, item, low, mid - 1);
   else {
     answer = binarySearch(list, item, mid + 1);
   }
@@ -58,3 +51,15 @@ function binarySearch(list, item, low = 0, high = list.length - 1) {
 }
 
 console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9], 5));
+
+const quickSort = arr => {
+  if (arr.length < 2) return arr;
+  else {
+    const pivot = arr[0];
+    const less = arr.filter(elem => elem < pivot);
+    const greater = arr.filter(elem => elem > pivot);
+    return [...quickSort(less), pivot, ...quickSort(greater)];
+  }
+};
+
+console.log(quickSort([10, 5, 2, 3]));
