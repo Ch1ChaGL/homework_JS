@@ -1,6 +1,5 @@
 'use strict';
 
-
 function findBigest(arr) {
   let bigest = arr[0];
   let bigestIndex = 0;
@@ -22,6 +21,5 @@ function seletionSort(arr) {
   }
   return newArr;
 }
-
 
 console.log(seletionSort([5, 3, 6, 2, 10]));
