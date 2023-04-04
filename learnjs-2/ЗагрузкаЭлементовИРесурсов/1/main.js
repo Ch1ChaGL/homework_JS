@@ -31,11 +31,11 @@ window.addEventListener('unload', () => {
   navigator.sendBeacon('/analytics', JSON.stringify(analyticsData));
 });
 
-window.addEventListener(
-  'beforeunload',
-  event =>
-    (event.returnValue = 'Есть несохранённые изменения. Всё равно уходим?'),
-);
+window.addEventListener('beforeunload', event => {
+  event.preventDefault();
+  return (event.returnValue =
+    'Есть несохранённые изменения. Всё равно уходим?');
+});
 
 //Свойство document.readyState показывает нам текущее состояние загрузки.
 
@@ -46,14 +46,14 @@ window.addEventListener(
 //"complete" – документ был полностью прочитан и
 //все ресурсы (такие как изображения) были тоже загружены.
 
-const work = () => {};
+// const work = () => {};
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', work);
-} else {
-  work();
-}
+// if (document.readyState === 'loading') {
+//   document.addEventListener('DOMContentLoaded', work);
+// } else {
+//   work();
+// }
 
-console.log(document.readyState);
+// console.log(document.readyState);
 
-document.addEventListener('readystatechange', () => alert(document.readyState));
+// document.addEventListener('readystatechange', () => alert(document.readyState));
