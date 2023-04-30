@@ -154,3 +154,55 @@ async function f() {
 }
 
 f().then(() => console.log('Done'));
+
+//Генераторы
+
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  yield 3;
+  return 4;
+}
+
+const generator = generateSequence();
+const one = generator.next();
+
+console.log(one);
+
+const range2 = {
+  from: 1,
+  to: 5,
+
+  *[Symbol.iterator]() {
+    for (let value = this.from; value <= this.to; value++) {
+      yield value;
+    }
+  },
+};
+
+for (const iterator of range2) {
+  console.log(iterator);
+}
+
+const range3 = {
+  from: 1,
+  to: 5,
+
+  async *[Symbol.asyncIterator]() {
+    for (let value = this.from; value <= this.to; value++) {
+      // пауза между значениями, ожидание
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      yield value;
+    }
+  },
+};
+
+(async () => {
+  for await (const value of range3) {
+    console.log(value);
+  }
+})();
+
+
+
