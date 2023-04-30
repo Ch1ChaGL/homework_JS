@@ -7,11 +7,10 @@ function sum(a, b, c) {
 //   return a * b * c;
 // }
 
-
 function curry(fn) {
   return function curried(...args) {
     if (args.length >= fn.length) return fn.apply(this, args);
-    return function(...newArgs) {
+    return function (...newArgs) {
       return curried.apply(this, args.concat(newArgs));
     };
   };
@@ -23,7 +22,6 @@ const curriedSum = curry(sum);
 console.log(curriedSum(2, 3, 4));
 console.log(curriedSum(2)(3)(4));
 
-
 const log = (base, n) => Math.log(n) / Math.log(base);
 
 const createLog = base => n => log(base, n);
@@ -32,10 +30,12 @@ const lg = createLog(10);
 
 console.log(lg(5));
 
+const partial =
+  (fn, ...x) =>
+  (...args) =>
+    fn(...x.concat(args));
 
-const partial = (fn, ...x) => (...args) => fn(...x.concat(args));
-
-const sum4 = (a = 0, b = 0, c = 0, d = 0) => (a + b + c + d);
+const sum4 = (a = 0, b = 0, c = 0, d = 0) => a + b + c + d;
 const f11 = partial(sum4, -100);
 console.log(f11(10));
 const f12 = partial(f11, 100);
@@ -48,17 +48,18 @@ const f21 = partial(sum4, 1, 2);
 console.log(f21(3, 4));
 // console.log(f11(2, 3));
 
-
 //Каррирование
 
-const curry2 = fn => (...args) => {
-  if (fn.length > args.length) {
-    const f = fn.bind(null, ...args);
-    return curry2(f);
-  } else {
-    return fn(...args);
-  }
-};
+const curry2 =
+  fn =>
+  (...args) => {
+    if (fn.length > args.length) {
+      const f = fn.bind(null, ...args);
+      return curry2(f);
+    } else {
+      return fn(...args);
+    }
+  };
 
 function sum2(a, b, c) {
   return a + b + c;
@@ -67,9 +68,6 @@ function sum2(a, b, c) {
 const f = curry2(sum2);
 
 console.log(f(2)(3)(3));
-
-
-
 
 //Мы карируем функцию sum, после чего она возвращает нам, функцию curried,
 /*При вызове, карированной функции, у нас есть контекст,
@@ -90,14 +88,10 @@ console.log(f(2)(3)(3));
 и теми которые мы передали в последний раз
 */
 const curry3 = (fn, ...par) => {
-  const curried = (...args) => (
-    fn.length > args.length ?
-      curry3(fn.bind(null, ...args)) :
-      fn(...args)
-  );
+  const curried = (...args) =>
+    fn.length > args.length ? curry3(fn.bind(null, ...args)) : fn(...args);
   return par.length ? curried(...par) : curried;
 };
-
 
 function sum3(a, b, c) {
   return a + b + c;
@@ -107,25 +101,17 @@ const f2 = curry3(sum3);
 
 console.log(f2(2, 3));
 
-
-
 const sum5 = (a, b, c, d) => a + b + c + d;
 
-
-function  MyCarry(fn, ...parametrs) {
-  const curried = (...args) => (
-    fn.length > args.length ?
-      MyCarry(fn.bind(null, ...args)) :
-      fn(...args)
-  );
+function MyCarry(fn, ...parametrs) {
+  const curried = (...args) =>
+    fn.length > args.length ? MyCarry(fn.bind(null, ...args)) : fn(...args);
   return parametrs.length ? curried(...parametrs) : curried;
 }
-
 
 const SumCury = MyCarry(sum5);
 
 console.log(SumCury(2)(3)(4, 5));
-
 
 const power = (exp, n) => Math.pow(n, exp);
 const square = num => Math.pow(num, 2);
@@ -133,8 +119,6 @@ const cube = power.bind(null, 3);
 console.log(power(2, 2));
 console.log(square(3));
 console.log(cube(3));
-
-
 
 /*Создается функция которая определяет тип кофе,
 а точнее объем, и возвращает функцию, которая ожидает на вход крепкость,
@@ -147,23 +131,17 @@ const coffee = (volume, strength) =>
 
 const defineCoffeeType = volume => strength => coffee(volume, strength);
 
-
 const espresso = defineCoffeeType(50);
 const americano = defineCoffeeType(150);
 
 console.log(espresso('strong'));
 console.log(americano('medium'));
 
-
 const tagged = (pref, str) => `[${pref}] ${str}`;
-
 
 const tagDate = str => tagged(new Date(), str);
 
 console.log(tagDate('Danil'));
-
-
-
 
 //Функциональное наследование
 /*Как я понимаю функциональное наследование отличается
@@ -173,19 +151,19 @@ console.log(tagDate('Danil'));
  потому что сам объект поле enabled не имеет */
 function Machine() {
   let enabled = false;
-  this.enable = function() {
+  this.enable = function () {
     enabled = true;
   };
 
-  this.disable = function() {
+  this.disable = function () {
     enabled = false;
   };
-  this.say = function() {
+  this.say = function () {
     console.log(enabled);
   };
 }
 
-Machine.prototype.saysay = function() {
+Machine.prototype.saysay = function () {
   console.log(this.enabled);
 };
 const Test1 = new Machine();
@@ -194,31 +172,27 @@ Test1.enable();
 Test1.say();
 Test1.disable();
 
-
 Test1.saysay();
-
 
 const Machine2 = () => {
   let count = 0;
   let enabled = false;
   const obj = {};
-  obj.enable = function() {
+  obj.enable = function () {
     count++;
     console.log(count);
     enabled = true;
   };
-  obj.disable = function() {
+  obj.disable = function () {
     count++;
     console.log(count);
     enabled = false;
   };
-  obj.say = function() {
-
+  obj.say = function () {
     console.log(++count, enabled);
   };
   return obj;
 };
-
 
 const Test2 = Machine2();
 const Test3 = Machine2();
@@ -228,13 +202,11 @@ Test2.say();
 Test2.disable();
 Test2.say();
 
-
 Test3.say();
 Test3.enable();
 Test3.say();
 Test2.disable();
 Test2.say();
-
 
 //Use method bind() to existing function to apply
 //preceding arguments and obtain a new function.
@@ -255,11 +227,10 @@ Test2.say();
 // console.log(boundGetX());
 // // expected output: 42
 
-
 const H = (exp, ...args) => {
-  const sum = args.reduce((s, a) => (s + Math.pow(a, exp)), 0);
+  const sum = args.reduce((s, a) => s + Math.pow(a, exp), 0);
   const avg = sum / args.length;
-  return Math.pow(avg, (1 / exp));
+  return Math.pow(avg, 1 / exp);
 };
 
 // Use method bind() to create new functions from function H.
@@ -294,7 +265,6 @@ const press = a => {
   return obj;
 };
 
-
 console.log(press(4).press(9).press(6).press(7) === checkPin(4, 9, 6, 7));
-const a  = [1, 2, 3, 4].join('');
+const a = [1, 2, 3, 4].join('');
 console.log(a);
