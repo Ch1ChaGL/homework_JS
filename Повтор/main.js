@@ -33,12 +33,6 @@ const doublePrice = Object.fromEntries(
 
 console.log(doublePrice.meat);
 
-// const curry = (fn, ...par) => {
-//   const curried = (...args) =>
-//     fn.length > args.length ? fn(...args) : curry(fn.bind(null, ...args));
-//   return par.length ? curried(...par) : curried;
-// };
-
 function hello(name) {
   return count => console.log(`Hello ${name} : ${count}`);
 }
@@ -204,5 +198,174 @@ const range3 = {
   }
 })();
 
+const numbers = [1, 2, 3, 4];
+
+/**
+ * Обертка над объектом, с ловушками traps
+ * Которые сработают при взаимодействии с оберткой
+ */
+const proxy = new Proxy(numbers, {
+  get(target, property) {
+    if (property in target) {
+      return target[property];
+    } else {
+      return undefined;
+    }
+  },
+});
+
+console.log(proxy[123]);
+
+let dictionary = {
+  Hello: 'Hola',
+  Bye: 'Adios',
+};
+
+dictionary = new Proxy(dictionary, {
+  get(target, prop) {
+    if (prop in target) {
+      return target[prop];
+    } else return prop + ' (нет перевода)';
+  },
+});
+
+console.log(dictionary['Привет']);
+
+/**
+ *
+ * @param {function} fn
+ * @param  {...any} param
+ * @returns
+ */
+const curry = (fn, ...param) => {
+  const curried = (...args) =>
+    fn.length > args.length ? curry(fn.bind(null, ...args)) : fn(...args);
+  return param.length ? curried(...param) : curried;
+};
+
+const sum = (a, b, c) => a + b + c;
+
+const curriedSum = curry(sum);
+
+console.log(curriedSum(100)(200)(300));
+
+const div = document.body.firstElementChild;
+
+//Деструктурирующее присваивание
+for (const { name, value } of div.attributes) {
+  console.log(name, value);
+}
+
+const input = document.querySelector('input');
+input.setAttribute('id', 'hi');
+//alert(input.id);
+
+input.id = 'newId';
+//alert(input.getAttribute('id'));
+
+input.setAttribute('value', 'text');
+//input.setAttribute('value', 'text2');  --Перезапишет
+//input.value = 123; -- Не перезапишет
+
+//setTimeout(() => alert(input.getAttribute('value')), 2000);
+
+const Ch1ChaGl = {
+  name: 'Danil',
+  age: '19',
+};
+
+for (const div of document.querySelectorAll('[show-info]')) {
+  const field = div.getAttribute('show-info');
+  div.innerHTML = Ch1ChaGl[field];
+}
+
+const div3 = document.querySelector('[data-about]');
+const text10 = div3.dataset.about;
+div3.innerHTML = Ch1ChaGl[text10];
+
+const div4 = document.querySelector('[data-widget-name]');
+alert(div4.dataset.widgetName);
+
+const listA = document.querySelectorAll('a[href]');
+
+for (const iterator of listA) {
+  const attributes = iterator.getAttribute('href');
+
+  if (
+    attributes.includes('://') &&
+    !attributes.startsWith('http://internal.com')
+  ) {
+    iterator.style.color = 'orange';
+  }
+}
+
+const lastElem = document.body.lastElementChild;
+
+const alertElem = document.createElement('div');
+alertElem.innerHTML = '<strong>Привет</strong>, как тебя зовут?';
+alertElem.classList.add('alert');
+//document.body.append(alertElem);
+
+lastElem.insertAdjacentElement('afterend', alertElem);
+//lastElem.insertAdjacentElement('afterend', alertElem.cloneNode(true));
+lastElem.after(alertElem.cloneNode(true));
+//alertElem.classList.remove('alert'); -- Удаление класса
+
+const elem = document.querySelector('#elem');
+
+/**
+ * Очищает содержимое HTML элемента
+ * @param {HTMLElement} parentElement
+ */
+function clear(parentElement) {
+  if (parentElement === undefined || parentElement === null)
+    throw new Error('Element not exists');
+
+  while (parentElement.firstChild) {
+    parentElement.firstChild.remove();
+  }
+}
+
+clear(elem);
+
+const data = {
+  Рыбы: {
+    форель: {},
+    лосось: {},
+  },
+
+  Деревья: {
+    Огромные: {
+      секвойя: {},
+      дуб: {},
+    },
+    Цветковые: {
+      яблоня: {},
+      магнолия: {},
+    },
+  },
+};
 
 
+
+function createTreeDom(obj) {
+  // если нет дочерних элементов, то вызов возвращает undefined
+  // и элемент <ul> не будет создан
+  if (!Object.keys(obj).length) return;
+
+  const ul = document.createElement('ul');
+
+  for (const key in obj) {
+    const li = document.createElement('li');
+    li.innerHTML = key;
+
+    const childrenUl = createTreeDom(obj[key]);
+    if (childrenUl) {
+      li.append(childrenUl);
+    }
+
+    ul.append(li);
+  }
+
+  return ul;
+}
