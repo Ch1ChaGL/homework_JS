@@ -81,7 +81,7 @@ interface IPass {
 
 
 
-class Ch1ChaGl implements IUser, IPass{
+class Ch1Cha_Gl implements IUser, IPass{
     constructor(
         public name: string,
         public age: number,
@@ -111,7 +111,7 @@ class onlyAdmin implements IAdmin {
         return `${this.name}${this.age}`
     }
     sayHi(){
-
+        throw new Error('This method is not implemented')
     }
 }
 
