@@ -346,8 +346,6 @@ const data = {
   },
 };
 
-
-
 function createTreeDom(obj) {
   // если нет дочерних элементов, то вызов возвращает undefined
   // и элемент <ul> не будет создан
@@ -369,3 +367,46 @@ function createTreeDom(obj) {
 
   return ul;
 }
+
+/**
+ * Возвращает окончательные значения свойства
+ */
+const computedStyle = getComputedStyle(alertElem);
+
+alert(computedStyle.marginBottom);
+
+let count2 = 1;
+/**
+ * Применяет стили и вызывает уведомление
+ * @param {object} styleObj
+ */
+const showNotification = ({
+  top = 0,
+  right = 0,
+  html = '',
+  className = '',
+}) => {
+  count2++;
+  const notification = document.createElement('div');
+  notification.classList.add('notification');
+
+  notification.style.top = top + 'px';
+  notification.style.right = right + 'px';
+  notification.textContent = html;
+  notification.classList.add(className);
+
+  document.body.append(notification);
+
+  setTimeout(() => notification.remove(), 1500);
+};
+
+setInterval(
+  () =>
+    showNotification({
+      top: 100,
+      right: 10,
+      html: `Уведомление ${count2}`,
+      className: 'welcome',
+    }),
+  2000,
+);
